@@ -1,4 +1,4 @@
 - dom_id = "comment_#{comment.id}_#{attr}"
 %td{:id => dom_id, :onclick => "event.cancelBubble = true; event.stopPropagation()"}
-  - remote_form_for comment, :url => admin_comment_path(comment), :html => {:id => "#{dom_id}_form"}, :complete => visual_effect(:highlight, dom_id, :duration => 1, :startcolor => '#88FF88', :endcolor => '#FFFFFF') do |f|
+  - form_for comment, :remote => true, :url => admin_comment_path(comment), :html => {:id => "#{dom_id}_form"}, :complete => visual_effect(:highlight, dom_id, :duration => 1, :startcolor => '#88FF88', :endcolor => '#FFFFFF') do |f|
     = f.check_box attr, check_box_onchange("$('#{dom_id}_form').onsubmit()", :onchange => false)

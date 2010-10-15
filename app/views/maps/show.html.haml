@@ -4,7 +4,7 @@
       %h2.icon.nearby Nearby Ideas
       %ul.actions
         %li.input
-          - remote_form_for :search, :url => map_path, :method => :get, :has_example_text => true do |f|
+          - form_for :search, :remote => true, :url => map_path, :method => :get, :has_example_text => true do |f|
             %label{ :for => "postal_code" } Your zip code:
             = f.text_field :postal_code, :example => 'ZIP', :id => "search_postal_code", :class => "input-custom"
             = submit_tag "Go", :class => "input-submit"

@@ -1,7 +1,7 @@
 ENV["RAILS_ENV"] = "test"
-ENV['TZ'] = 'US/Central'
-require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
-require 'test_help'
+require File.expand_path('../../config/environment', __FILE__)
+require 'rails/test_help'
+require "#{Rails.root}/vendor/gems/lazy-0.9.5/lazy"
 gem 'thoughtbot-shoulda'
 require 'lazy'
 require 'shoulda'
@@ -34,10 +34,7 @@ end
   end
 end
 
-# Always force scenarios to be rebuilt. It's not too slow, and avoids confusion.
-NestedScenarios::Builder.build_all
-
-class ActiveSupport::TestCase
+class Test::Unit::TestCase
   # Transactional fixtures accelerate your tests by wrapping each test method
   # in a transaction that's rolled back on completion.  This ensures that the
   # test database remains unchanged so your fixtures don't have to be reloaded

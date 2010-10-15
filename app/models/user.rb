@@ -188,7 +188,7 @@ class User < ActiveRecord::Base
   end
   
   def record_contribution!(contrib_type)
-    score = CONTRIBUTION_SCORES[contrib_type]
+    score = BBYIDX::CONTRIBUTION_SCORES[contrib_type]
     raise "Unknown contribution type: #{contrib_type.inspect}" unless score
     transaction do
       lock!

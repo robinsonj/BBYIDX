@@ -1,0 +1,51 @@
+%div
+  .main.panel.section
+    .header
+      %h2.icon.user-edit Account Settings
+    .body.group
+      = error_messages_for :user
+      - form_for :user, :url => user_path, :html => { :method => :put } do |f|
+        .form-group.inline
+          = f.label :name, "Screen name<br /><em>required</em>", :class => 'required'
+          = f.text_field :name, :class => "input-text"
+          %p.note== This is your public name on #{BBYIDX::SHORT_SITE_NAME}
+        .form-group.inline
+          = f.label :zip_code, "Zip Code<br /><em>required</em>", :class => 'required'
+          = f.text_field :zip_code, :class => "input-text"
+          %p.note Your U.S. zip code (Another country's postal code works too!)
+        .form-group.inline
+          = f.label :password, "New password"
+          = f.password_field :password, :class => "input-text"
+          %p.note Minimum 4 characters.
+        .form-group.inline
+          = f.label :password_confirmation, "Confirm"
+          = f.password_field :password_confirmation, :class => "input-text"
+          %p.note Make sure you typed it right.
+        .form-group.inline.checkbox
+          = f.check_box :notify_on_comments, :class => "input-checkbox"
+          = f.label :notify_on_comments, "Notify me when someone comments on my idea"
+        - if BBYIDX::TWITTER_ENABLED
+          .form-group.inline
+            = f.label :twitter_handle, "Twitter Username"
+            = f.text_field :twitter_handle, :class => "input-text"
+            %p.note== Your twitter username will be displayed on your #{BBYIDX::SHORT_SITE_NAME} public profile
+        .form-group.inline.checkbox
+          = f.check_box :tweet_ideas, :class => "input-checkbox"
+          = f.label :tweet_ideas, "Tweet my ideas"
+          %p.note Check this box to automatically tweet your ideas.
+        - if BBYIDX::FACEBOOK_ENABLED
+          .form-group.inline
+            - if @user.is_facebook_user?
+              = f.label :none, "Facebook Connection"
+              Your account is linked with a Facebook account
+              = link_to 'Disconnect from Facebook', :controller => 'users', :action => 'disconnect'
+            - else
+              = f.label :none, "Facebook Connection"
+              Do you have a Facebook account? Connect it with BBYIDX to share your suggestions on facebook too.
+              <fb:login-button onclick='facebook_button_onclick()'></fb:login-button>
+        .form-submit.inline
+          = submit_tag 'Update Account', :id => "submit-save-changes", :class => "input-submit"
+    .footer
+  %hr.hide
+  #sidebar.aside
+    = render :partial => "shared/sidebar"

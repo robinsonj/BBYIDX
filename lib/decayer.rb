@@ -31,7 +31,13 @@ class Decayer < BatchWorker
   end
   
   def to_s
-    "#{self.class.name}[#{@model.name}.#{@field}]"
+    "#{self.class.name}[#{@current_model.name}.#{@field}]"
+  end
+  
+protected
+  
+  def self.logger
+    Rails.logger
   end
   
 end

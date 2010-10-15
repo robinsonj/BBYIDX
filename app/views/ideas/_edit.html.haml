@@ -1,5 +1,5 @@
 = error_messages_for :idea
-- remote_form_for :idea, :url => idea_path, :method => 'put', :update => 'edit-idea-1', :has_example_text => true do |f|
+- form_for :idea, :remote => true, :url => idea_path, :method => 'put', :update => 'edit-idea-1', :has_example_text => true do |f|
   #idea-title-group.form-group.inline
     = f.label :title, "Idea"
     = f.text_field :title, :example => 'My idea is...', :maxlength => 120, :size => 51, :id => "idea-title", :class => "input-text big"

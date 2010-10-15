@@ -1,6 +1,4 @@
 require 'fastercsv'
-# require 'highline/import'
-require 'zlib'
 
 namespace :db do
   desc "Load seed data into the current environment's database."

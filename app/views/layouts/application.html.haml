@@ -1,15 +1,15 @@
 !!! Strict
 %html{ :xmlns => "http://www.w3.org/1999/xhtml" }
   %head{ :profile => "http://gmpg.org/xfn/1" }
-    %title== #{LONG_SITE_NAME} | #{h(page_title || "Exchange your ideas, vote, and discuss. Let's make it better.")}
+    %title== #{BBYIDX::LONG_SITE_NAME} | #{h(page_title || "Exchange your ideas, vote, and discuss. Let's make it better.")}
     -cache 'header' do
       %link{ :href => "/favicon.ico", :rel => "icon", :type => "image/vnd.microsoft.icon" }
       %meta{ :content => 'text/html; charset=UTF-8', "http-equiv" => "Content-Type" }/
-      %meta{ :name => 'keywords', :content => "#{COMPANY_NAME}, #{SHORT_SITE_NAME}, #{LONG_SITE_NAME}, Idea Exchange, share, vote, rate"}
-      %meta{ :name => 'description', :content => "#{LONG_SITE_NAME} is a forum for #{COMPANY_NAME} customers to share, rate, and discuss ideas about #{COMPANY_NAME}."}
+      %meta{ :name => 'keywords', :content => "#{BBYIDX::COMPANY_NAME}, #{BBYIDX::SHORT_SITE_NAME}, #{BBYIDX::LONG_SITE_NAME}, Idea Exchange, share, vote, rate"}
+      %meta{ :name => 'description', :content => "#{BBYIDX::LONG_SITE_NAME} is a forum for #{BBYIDX::COMPANY_NAME} customers to share, rate, and discuss ideas about #{BBYIDX::COMPANY_NAME}."}
       
-      -if GOOGLE_WEBMASTER_KEY
-        %meta{ :name => "verify-v1", :content => GOOGLE_WEBMASTER_KEY }
+      -if BBYIDX::GOOGLE_WEBMASTER_KEY
+        %meta{ :name => "verify-v1", :content => BBYIDX::GOOGLE_WEBMASTER_KEY }
       
       = stylesheet_link_tag 'master'
       /[if lt IE 8]
@@ -21,6 +21,9 @@
       = javascript_include_tag :defaults
       = javascript_include_tag 'jquery.min'
       = javascript_include_tag 'ga', 'global'
+      = javascript_include_tag  'ga', 'global'
+      - if BBYIDX::FACEBOOK_ENABLED
+        = javascript_include_tag 'http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php'
       :javascript
         jQuery.noConflict(); // prevent jQuery from overriding $ operator, so that it doesn't fight with Prototype
     = csrf_meta_tag
@@ -43,7 +46,7 @@
       -cache 'footer' do
         %hr.hide
         = render :partial => "shared/footer"
-        -if FACEBOOK_ENABLED
+        -if BBYIDX::FACEBOOK_ENABLED
           = fb_connect_async_js
           :javascript
             facebook_auth = function(success_callback) {
@@ -59,7 +62,7 @@
                 window.location = callback_url || '#{create_facebook_session_url}'
               })
             }
-        -if GOOGLE_ANALYTICS_TRACKING_CODE
+        -if BBYIDX::GOOGLE_ANALYTICS_TRACKING_CODE
           :javascript
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
             document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));

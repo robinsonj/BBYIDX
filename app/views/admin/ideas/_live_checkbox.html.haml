@@ -1,4 +1,4 @@
 - dom_id = "idea_#{idea.id}_#{attr}"
 %td{:id => dom_id, :onclick => "event.cancelBubble = true; event.stopPropagation()"}
-  - remote_form_for idea, :url => admin_idea_path(idea), :html => {:id => "#{dom_id}_form"}, :complete => visual_effect(:highlight, dom_id, :duration => 1, :startcolor => '#88FF88', :endcolor => idea.viewed ? '#FFFFFF' : '#FFECC0') do |f|
+  - form_for idea, :remote => true, :url => admin_idea_path(idea), :html => {:id => "#{dom_id}_form"}, :complete => visual_effect(:highlight, dom_id, :duration => 1, :startcolor => '#88FF88', :endcolor => idea.viewed ? '#FFFFFF' : '#FFECC0') do |f|
     = f.check_box attr, check_box_onchange("$('#{dom_id}_form').onsubmit()", :onchange => false).merge(:id => "idea_#{idea.id}_marked_spam", :autocomplete => "off")

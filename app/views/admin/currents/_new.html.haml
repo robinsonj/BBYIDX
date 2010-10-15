@@ -1,0 +1,14 @@
+-# This partial shared by /ideas/new, home page, and drop-down.
+= error_messages_for :current
+- form_for :current, :remote => true, :url => admin_currents_path, :update => 'submit-current', :has_example_text => true do |f|
+  #current-title-group.form-group
+    = f.label :title, "Current"
+    = f.text_field :title, :example => 'My current is...', :maxlength => 120, :size => 51, :id => "current-title", :class => "input-text big"
+  #current-description-group.form-group
+    = f.label :description, "Description"
+    = f.text_area :description, :example => "Seeking ideas about...", :id => "current-description", :class => "input-textarea big", :rows => "7", :cols => "40"
+    = submit_tag 'Create this Current', :class => "input-submit big"
+  %p.note>
+    %strong.alert<>
+      Remember
+    , please keep it constructive!

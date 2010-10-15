@@ -1,5 +1,76 @@
-ActionController::Routing::Routes.draw do |map|
-  map.resources :ideas, :member => { :assign => :post, :subscribe => :post, :unsubscribe => [:post, :get] } do |idea|  # unsubscribe supports GET for direct link from e-mail
+# Bbyidx::Application.routes.draw do
+#   resources :ideas do
+#     resources :comments  # for new/create, and idea-specific comment index
+#     resource :vote
+#   end
+# 
+#   resources :currents do
+#     resources :ideas
+#   end
+# 
+#   resource :user do
+#     member do
+#       get :disconnect
+#     end
+#   end
+#   resource :session
+#   resources :comments # for global comment list
+#   resources :tags
+#   resources :profiles
+#   resource :map
+#   
+#   match '/login' => 'sessions#new', :as => :login
+#   match '/logout' => 'sessions#destroy', :as => :logout
+#   match '/signup' => 'users#new', :as => :signup
+#   match '/ideas/search/*search' => 'ideas#index', :as => :idea_search
+#   match '/user/send_activation' => 'users#send_activation', :as => :send_activation
+#   match '/user/activate/:activation_code' => 'users#activate', :as => :activate
+#   match '/user/password/forgot' => 'users#forgot_password', :as => :forgot_password, :via => get
+#   match '/user/password/forgot' => 'users#send_password_reset', :as => :send_password_reset, :via => post
+#   match '/user/password/new/:activation_code' => 'users#new_password', :as => :password_reset
+#   match '/:model/:id/inappropriate' => 'inappropriate#flag', :as => :flag_inappropriate
+#   match '/user/authorize_twitter' => 'users#authorize_twitter', :as => :authorize_twitter
+#   
+#   # Facebook stuff
+#   
+#   # map.connect '/fb/:action', :controller => 'fb_connect'
+# 
+#   # OAuth stuff
+#   
+#   match '/oauth/test_request' => 'oauth#test_request', :as => :test_request
+#   match '/oauth/access_token' => 'oauth#access_token', :as => :access_token
+#   match '/oauth/request_token' => 'oauth#request_token', :as => :request_token
+#   match '/oauth/authorize' => 'oauth#authorize', :as => :authorize
+#   match '/oauth' => 'oauth#index', :as => :oauth
+#   
+#   namespace :admin do
+#     resources :users do
+#       member do
+#         put :activate
+#         put :suspend
+#         put :unsuspend
+#       end
+#     end
+#     resources :comments
+#     resources :tags
+#     resources :ideas
+#     resources :currents
+#     resources :client_applications
+#     match 'path_prefixadmin/life_cyclescontrollerlife_cycles' => '#index', :as => :with_options
+#     match 'ideas/similar/:similar_to' => 'ideas#index', :as => :similar_ideas
+#     match 'comments/similar/:similar_to' => 'comments#index', :as => :similar_comments
+#     match 'name_prefixadmin_bucket_path_prefixadmin/bucketcontrollerbuckets' => '#index', :as => :with_options
+#     match 'controllerideas' => '#index', :as => :with_options
+#   end
+# 
+#   match '/' => 'home#show'
+#   match ':page' => 'home#show', :as => :home, :page => /about|contact|privacy-policy|terms-of-use/
+# end
+
+
+# ActionController::Routing::Routes.draw do |map|
+BBYIDX::Application.routes.draw do |map|
+  map.resources :ideas, :member => { :assign => :post } do |idea|
     idea.resources :comments # for new/create, idea-specific index
     idea.resource :vote
   end

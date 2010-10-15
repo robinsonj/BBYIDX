@@ -54,7 +54,7 @@
           .form-group.inline.checkbox
             = f.check_box :flagged, :id => "idea_flagged", :class => "input-checkbox"
             = f.label :flagged, "Mark as interesting"
-            %p.note== For #{COMPANY_NAME} internal use. Mark ideas you want to review further.
+            %p.note== For #{BBYIDX::COMPANY_NAME} internal use. Mark ideas you want to review further.
           -if @idea.duplicate_of_id
             .form-group.inline
               .warning.info#duplicate

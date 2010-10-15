@@ -5,7 +5,7 @@
   %rss{ :version => "2.0", "xmlns:wfw" => "http://wellformedweb.org/CommentAPI/", "xmlns:dc" => "http://purl.org/dc/elements/1.1/", "xmlns:atom" => "http://www.w3.org/2005/Atom" }
     %channel
       %title
-        = LONG_SITE_NAME
+        = BBYIDX::LONG_SITE_NAME
         -if params[:search]
           =h @query_title
         -else
@@ -15,10 +15,10 @@
           =root_url
         -else
           =ideas_url filtered_params
-      %atom:link{ :href => ideas_url(filtered_params.merge(:format => 'rss')), :rel => 'self', :type => 'application/rss+xml' }/
+      %atom:link{ :href => ideas_url(filtered_params.merge(:format => :rss)), :rel => 'self', :type => 'application/rss+xml' }/
       %description
         Ideas posted to
-        = LONG_SITE_NAME
+        = BBYIDX::LONG_SITE_NAME
       %language
         en-us
       %copyright
@@ -29,7 +29,7 @@
       %lastBuildDate
         =rss_date Time.now
       %category
-        = COMPANY_NAME
+        = BBYIDX::COMPANY_NAME
       %generator
         Rails
       -current_objects.each do |idea|
@@ -56,4 +56,4 @@
               -# DOUBLE-ESCAPING NECESSARY
               =h h tag.name
           %wfw:commentRss
-            =idea_comments_url(idea, :format => 'rss')
+            =idea_comments_url(idea, :format => :rss)

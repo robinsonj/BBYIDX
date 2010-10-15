@@ -200,15 +200,15 @@ class IdeasController < ApplicationController
     if params[:search]
       current_objects
       @feeds << {
-        :href => idea_search_url(params[:search], :format => 'rss'),
-        :title => "#{LONG_SITE_NAME}: #{ERB::Util.h @query_title}" }
+        :href => idea_search_url(params[:search], :format => :rss),
+        :title => "#{BBYIDX::LONG_SITE_NAME}: #{ERB::Util.h @query_title}" }
     end
   end
   
   def add_comments_feed
     @feeds << {
       :href => idea_comments_url(current_object, :format => 'rss'),
-      :title => "#{LONG_SITE_NAME}: Comments on \"#{ERB::Util.h(ERB::Util.h current_object.title)}\"" }
+      :title => "#{BBYIDX::LONG_SITE_NAME}: Comments on \"#{ERB::Util.h(ERB::Util.h current_object.title)}\"" }
   end
   
   def page_title

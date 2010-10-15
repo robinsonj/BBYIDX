@@ -88,7 +88,7 @@ class SessionsController < ApplicationController
     self.current_user.forget_me if logged_in?
     cookies.delete :auth_token
     reset_session
-    flash[:info] = "You are now logged out. Thanks for using #{SHORT_SITE_NAME}!"
+    flash[:info] = "You are now logged out. Thanks for using #{BBYIDX::SHORT_SITE_NAME}!"
     redirect_back_or_default root_path
   end
   

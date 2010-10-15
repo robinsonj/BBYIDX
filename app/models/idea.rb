@@ -39,6 +39,9 @@ class Idea < ActiveRecord::Base
   validates_length_of :title, :maximum => 120, :if => lambda { |idea| idea.title }
   
   validate :current_not_closed
+
+  before_save :make_tages_unique
+  after_save  :record_contribution
   
   def current_not_closed
     errors.add_to_base("You are trying to add/update an idea in a closed current.  That's not allowed.") if closed?
@@ -187,13 +190,13 @@ class Idea < ActiveRecord::Base
     @comment_count ||= (attributes[:comment_count] || comments.visible.size)
   end
   
-  def before_save
+  def make_tages_unique
     self.tags.uniq!
     update_vote_count
     self.current_id = Current::DEFAULT_CURRENT_ID unless current_id
   end
   
-  def after_save
+  def record_contribution
     if inventor && inventor_id_change && !@contribution_recorded
       inventor.record_contribution! :idea
       @contribution_recorded = true  # prevents double-recording when callbacks cause a reentrant save

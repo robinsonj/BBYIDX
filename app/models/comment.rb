@@ -3,6 +3,10 @@ class Comment < ActiveRecord::Base
   
   belongs_to :idea
   belongs_to :author, :class_name => 'User'
+
+  before_create :detect_spam
+  after_create :record_contribution
+  
   def comment_type
     'comment'
   end
@@ -38,6 +42,20 @@ class Comment < ActiveRecord::Base
   
   def after_save
     notify_subscribers!
+  end
+  
+  def detect_spam
+    self.marked_spam = self.spam? if Rakismet::KEY
+    true
+  end
+  
+  def record_contribution
+    author.record_contribution! :comment
+  end
+  
+  def marked_spam=(spam)
+    self[:marked_spam] = spam
+    self[:hidden] = true if spam
   end
   
   def editing_expired?

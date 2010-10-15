@@ -1,5 +1,9 @@
-log
+.bundle
+db/*.sqlite3
+log/*.log
+tmp/**/*
 .DS_Store
+<<<<<<< HEAD
 tmp/*
 test/fixtures/*/*
 *.tmproj
@@ -7,3 +11,6 @@ db/development_structure.sql
 .rvmrc
 .bundle
 bin
+=======
+test/fixtures/*/*
+>>>>>>> Experimenting with rails3 migration.

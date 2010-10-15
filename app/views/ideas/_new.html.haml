@@ -1,6 +1,6 @@
 -# This partial shared by /ideas/new, home page, and drop-down.
 = error_messages_for :idea
-- remote_form_for :idea, :url => ideas_path, :update => 'submit-idea', :has_example_text => true do |f|
+- form_for :idea, :remote => true, :url => ideas_path, :update => 'submit-idea', :has_example_text => true do |f|
   - if defined?(current) && !current.nil?
     =f.hidden_field :current_id, :id => "idea-current-id", :value=>current.id
   - else

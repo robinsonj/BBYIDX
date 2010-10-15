@@ -10,7 +10,7 @@ class Indices < ActiveRecord::Migration
     add_index :tags, :name
     add_index :users, :state
     add_index :users, :email, :unique=>true
-    add_index :votes, [:user_id, :idea_id], :unique=>1
+    add_index :votes, [:user_id, :idea_id], :unique=>true
   end
 
   def self.down
