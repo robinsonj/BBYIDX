@@ -1,29 +1,29 @@
+source 'http://rubygems.org'
+source 'http://gems.github.com'
 
-source "http://rubygems.org"
+gem 'rails', '3.0.0'
 
-gem "rails", "~> 2.3.11"
-gem "json"
-gem "haml", '3.0.22'
-gem 'will_paginate', '~> 2.3.11'
-gem "color", '1.4.1'
-gem 'twitter', '0.9.12'
-gem 'mash'
-gem 'httparty'
-gem 'ruby-hmac'
+# Bundle edge Rails instead:
+# gem 'rails', :git => 'git://github.com/rails/rails.git'
+
+gem 'sqlite3-ruby', :require => 'sqlite3'
 
 gem 'facebooker2'
 gem 'mogli'
+gem 'haml'
+gem 'will_paginate', '~> 3.0.pre2'
+gem 'color'
+gem 'oauth',        :git => "git://github.com/pelle/oauth.git" 
+gem 'oauth-plugin', :git => "git://github.com/pelle/oauth-plugin.git", :branch => "rails3"
+gem 'mash'
 gem 'httparty'
-gem 'oauth', '0.4.3'
-gem 'oauth-plugin', '0.3.14'
-gem "calendar_date_select", '1.16.1'
-gem "rcov"
-gem "lazy", '0.9.6'
+gem 'ruby-hmac', :require => 'hmac'
+gem 'calendar_date_select'
+gem 'rcov'
+gem 'pg'
 gem 'fastercsv'
-gem 'highline'
 
 group :test do
- gem 'pg'
  gem 'shoulda'
  gem 'thoughtbot-shoulda'
  gem 'mocha'

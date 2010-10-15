@@ -1,3 +1,5 @@
+require 'authenticated_system'
+
 # Filters added to this controller apply to all controllers in the application.
 # Likewise, all the methods added will be available for all controllers.
 
@@ -29,6 +31,14 @@ class ApplicationController < ActionController::Base
   # This filters the contents of submitted sensitive data parameters
   # from the application log (in this case, all fields with names like "password"). 
   filter_parameter_logging :password, :password_confirmation
+  
+  def oauthenticate
+    puts 'WARNING: oauth temporarily disabled during rail 3 migration'
+  end
+  
+  def oauth_required
+    puts 'WARNING: oauth temporarily disabled during rail 3 migration'
+  end
   
 protected
   
@@ -76,9 +86,9 @@ protected
   # Initializes the list of associated RSS feeds for a page, and add the default main feed.
   # Controllers may add other feeds by appending them to @feeds.
   def add_ideas_feed
-    @ideas_rss_url = ideas_url(:format => 'rss')
+    @ideas_rss_url = ideas_url(:format => :rss)
     @feeds ||= []
-    @feeds << { :href => @ideas_rss_url, :title => "#{LONG_SITE_NAME} New Ideas RSS Feed" }
+    @feeds << { :href => @ideas_rss_url, :title => "#{BBYIDX::LONG_SITE_NAME} New Ideas RSS Feed" }
   end
   
   def xml_request?
