@@ -14,13 +14,10 @@ Rails and all the gems and plugins; bundler should take care of all that automat
 
 The app requires PostgreSQL 8.3 or newer.
 
-You'll probably encounter issues on other databases. At the very least, full text search won't work, since it uses
-the PostgreSQL-specific tsearch plugin. We welcome patches!
+You will encounter errors on other databases. Queries use Postgres-specific syntax. Full text search won't work,
+since it uses the PostgreSQL-specific tsearch plugin.
 
-One known hurdle: if you are using MySQL, you'll need to make sure the user configured in database.yml
-has permission to use the "load data" command:
-
-    grant file on *.* to bbyidx;
+Want to run it on MySQL? We welcome patches!
 
 ## Configuration
 
