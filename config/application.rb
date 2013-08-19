@@ -63,7 +63,7 @@ module BBYIDX
   
     # Activate observers that should always be running
     # config.active_record.observers = :cacher, :garbage_collector
-    config.active_record.observers = :user_observer, :comment_observer, :idea_observer
+    config.active_record.observers = :user_observer, :idea_observer
     
     # disable forgery proction so that facebook works (we might be able to disble this only for the facebook controller)
     # config.action_controller.allow_forgery_protection = false
