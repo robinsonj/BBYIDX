@@ -32,6 +32,7 @@ gem 'in_place_editing'
 gem 'rakismet'
 gem 'facebooker2'
 gem 'mogli'
+gem 'rinku'
 
 
 #! Needs replacement:

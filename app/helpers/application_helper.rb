@@ -12,7 +12,7 @@ module ApplicationHelper
     # Handles free-form text for ideas and comments.
     # We could drop in some more elaborate formatting rules here if we want to,
     # but be careful about XSS attacks!
-    auto_link(h(text).strip.gsub(/(\n|\r\n|\r)/, '<br/>'), :urls, {:rel => 'nofollow'})
+    Rinku.auto_link h(text).strip.gsub(/(\n|\r\n|\r)/, '<br/>'), :urls, 'rel="nofollow"'
   end
   
   def idea_owner?(idea)
