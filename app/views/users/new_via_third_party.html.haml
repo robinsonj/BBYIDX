@@ -15,7 +15,7 @@
           .form-group.inline
             %label{ :for => "user_name" } Screen name
             = f.text_field :name, :class => "input-text big"
-            %p.note== This is your public name on #{SHORT_SITE_NAME}
+            %p.note== This is your public name on #{BBYIDX::SHORT_SITE_NAME}
           .form-group.inline
             %label{ :for => "user_email" } Email Address
             = f.text_field :email, :class => "input-text big"
@@ -29,12 +29,12 @@
             .form-group.inline.checkbox
               = f.check_box :tweet_ideas, :class => "input-checkbox"
               = f.label :tweet_ideas, "Tweet my ideas"
-              %p.note Check this box to automatically Tweet your #{SHORT_SITE_NAME} ideas
+              %p.note Check this box to automatically Tweet your #{BBYIDX::SHORT_SITE_NAME} ideas
           -if @user.linked_to_facebook?
             .form-group.inline.checkbox
               = f.check_box :facebook_post_ideas, :class => "input-checkbox"
               = f.label :facebook_post_ideas, "Publish ideas to Facebook"
-              %p.note Check this box to automatically post your #{SHORT_SITE_NAME} ideas to Facebook
+              %p.note Check this box to automatically post your #{BBYIDX::SHORT_SITE_NAME} ideas to Facebook
           .form-group.inline.checkbox
             = f.check_box :terms_of_service, :class => "input-checkbox"
             %label{ :for => "user_terms_of_service" }

@@ -2,17 +2,17 @@ module BBYIDX
   # Customize with your project's name. Example:
   #
   #     COMPANY_NAME = 'Widgets by Quentin'
-  #     SHORT_SITE_NAME = 'Ideaomatic'
+  #     BBYIDX::SHORT_SITE_NAME = 'Ideaomatic'
 
   COMPANY_NAME = 'YOUR_COMPANY_NAME'
-  SHORT_SITE_NAME = 'BBYIDX'
-  LONG_SITE_NAME = "#{COMPANY_NAME} #{SHORT_SITE_NAME}"
+  BBYIDX::SHORT_SITE_NAME = 'BBYIDX'
+  LONG_SITE_NAME = "#{COMPANY_NAME} #{BBYIDX::SHORT_SITE_NAME}"
 
   PRODUCTION_HOST = 'bbyidx.com'
 
   # Specify a long random string for SESSION_SECRET to secure user sessions
   SESSION_SECRET = ENV['SESSION_SECRET']
-  SESSION_KEY = "_#{SHORT_SITE_NAME.downcase}_session"
+  SESSION_KEY = "_#{BBYIDX::SHORT_SITE_NAME.downcase}_session"
 
   # Customize the user contribution points for various activities, if you like.
   CONTRIBUTION_SCORES = {

@@ -1,7 +1,7 @@
 .section
-  %h2.header== What is #{SHORT_SITE_NAME}?
+  %h2.header== What is #{BBYIDX::SHORT_SITE_NAME}?
   %p
-    ==#{SHORT_SITE_NAME} is a forum to share, vote on, and discuss ideas.
+    ==#{BBYIDX::SHORT_SITE_NAME} is a forum to share, vote on, and discuss ideas.
     - unless logged_in?
       = link_to "Sign up", signup_url
       now and join the community.

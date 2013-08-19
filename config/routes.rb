@@ -85,7 +85,7 @@ BBYIDX::Application.routes.draw do
   
   root :controller => 'home', :action => 'show'
   get '/home/nearby-ideas' => 'home#nearby_ideas', as: :home_nearby_ideas
-  # home ':page', :controller => 'home', :action => 'show', :page => /about|contact|privacy-policy|terms-of-use/
+  get ':page' => 'home#show', :page => /about|contact|privacy-policy|terms-of-use/, as: :home
   
   # No default routes declared for security & tidiness. (They make all actions in every controller accessible via GET requests.)
 end

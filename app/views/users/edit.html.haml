@@ -9,7 +9,7 @@
         .form-group.inline
           = f.label :name, "Screen name<br /><em>required</em>", :class => 'required'
           = f.text_field :name, :class => "input-text"
-          %p.note== This is your public name on #{SHORT_SITE_NAME}
+          %p.note== This is your public name on #{BBYIDX::SHORT_SITE_NAME}
         .form-group.inline
           = f.label :email, "Email<br /><em>required</em>", :class => 'required'
           = f.text_field :email, :class => "input-text"
@@ -61,14 +61,14 @@
                   = hidden_field_tag :unlink_twitter
               = f.check_box :tweet_ideas, :class => "input-checkbox"
               = f.label :tweet_ideas, "Tweet my ideas"
-              %p.note Check this box to automatically Tweet your #{SHORT_SITE_NAME} ideas.
+              %p.note Check this box to automatically Tweet your #{BBYIDX::SHORT_SITE_NAME} ideas.
             - else
               = link_to 'Link to Twitter account', '#', :onclick => 'return change_service_link("twitter", true)'
               = hidden_field_tag :link_twitter
               %p.note
                 Allows you to Tweet your ideas, and log in via Twitter.
                 %br/
-                == Displays your Twitter name in your #{SHORT_SITE_NAME} public profile.
+                == Displays your Twitter name in your #{BBYIDX::SHORT_SITE_NAME} public profile.
           -# ------- /STYLE NEEDED ------
           
         - if BBYIDX::FACEBOOK_ENABLED
@@ -86,7 +86,7 @@
                   = hidden_field_tag :unlink_facebook
               = f.check_box :facebook_post_ideas, :class => "input-checkbox"
               = f.label :facebook_post_ideas, "Share my ideas on Facebook"
-              %p.note Check this box to automatically post your #{SHORT_SITE_NAME} ideas on your wall
+              %p.note Check this box to automatically post your #{BBYIDX::SHORT_SITE_NAME} ideas on your wall
             - else
               = link_to 'Link to Facebook account', '#', :onclick => 'return facebook_auth_and_link(true)'
               = hidden_field_tag :link_facebook

@@ -24,7 +24,7 @@
         .form-group.inline.checkbox
           = f.check_box :notify_on_comments, :class => "input-checkbox"
           = f.label :notify_on_comments, "Notify me when someone comments on my idea"
-        - if BBYIDX::BBYIDX::TWITTER_ENABLED
+        - if BBYIDX::TWITTER_ENABLED
           .form-group.inline
             = f.label :twitter_handle, "Twitter Username"
             = f.text_field :twitter_handle, :class => "input-text"
