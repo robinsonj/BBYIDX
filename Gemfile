@@ -1,15 +1,7 @@
 source 'http://rubygems.org'
 source 'http://gems.github.com'
 
-gem 'rails', '3.0.0'
-
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
-gem 'sqlite3-ruby', :require => 'sqlite3'
-
-gem 'facebooker2'
-gem 'mogli'
+gem 'rails', '~> 3.2.0'
 gem 'haml'
 gem 'will_paginate', '~> 3.0.pre2'
 gem 'color'
@@ -19,9 +11,7 @@ gem 'mash'
 gem 'httparty'
 gem 'ruby-hmac', :require => 'hmac'
 gem 'calendar_date_select'
-gem 'rcov'
 gem 'pg'
-gem 'fastercsv'
 
 group :test do
  gem 'shoulda'
@@ -29,3 +19,26 @@ group :test do
  gem 'mocha'
  gem 'nokogiri'
 end
+gem 'test-unit'
+
+gem 'make_resourceful'
+gem 'acts_as_list'
+gem 'state_machine'
+gem 'delayed_job'
+gem 'dynamic_form'
+gem 'gravatar'
+gem 'haml'
+gem 'in_place_editing'
+gem 'rakismet'
+gem 'facebooker2'
+gem 'mogli'
+
+
+# Needs replacement:
+gem 'ym4r'
+# gem 'restful_authentication'
+# gem 'fixture_scenarios'
+# gem 'fixture_scenarios_builder'
+# gem 'acts_as_tsearch'
+# gem 'nested_scenarios'
+# gem 'rails-authorization-plugin'
