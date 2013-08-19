@@ -27,11 +27,6 @@ class ApplicationController < ActionController::Base
   end
   helper_method :page_title
   
-  # See ActionController::Base for details 
-  # This filters the contents of submitted sensitive data parameters
-  # from the application log (in this case, all fields with names like "password"). 
-  filter_parameter_logging :password, :password_confirmation
-  
   def oauthenticate
     puts 'WARNING: oauth temporarily disabled during rail 3 migration'
   end

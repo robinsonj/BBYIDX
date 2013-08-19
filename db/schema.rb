@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -16,14 +17,14 @@ ActiveRecord::Schema.define(:version => 20110309223551) do
     t.integer  "idea_id"
     t.integer  "author_id"
     t.text     "text"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "admin_tags", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "client_applications", :force => true do |t|
@@ -34,8 +35,8 @@ ActiveRecord::Schema.define(:version => 20110309223551) do
     t.string   "key",          :limit => 20
     t.string   "secret",       :limit => 40
     t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
   end
 
   add_index "client_applications", ["key"], :name => "index_client_applications_on_key", :unique => true
@@ -44,8 +45,8 @@ ActiveRecord::Schema.define(:version => 20110309223551) do
     t.integer  "idea_id"
     t.integer  "author_id"
     t.text     "text"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                           :null => false
+    t.datetime "updated_at",                                           :null => false
     t.integer  "inappropriate_flags",               :default => 0
     t.boolean  "hidden",                            :default => false
     t.string   "ip",                  :limit => 64
@@ -62,19 +63,17 @@ ActiveRecord::Schema.define(:version => 20110309223551) do
     t.string   "title"
     t.text     "description"
     t.integer  "inventor_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.text     "vectors"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
     t.boolean  "closed",              :default => false
     t.boolean  "invitation_only",     :default => false
     t.date     "submission_deadline"
   end
 
-  add_index "currents", ["vectors"], :name => "currents_fts_vectors_index"
-
-  create_table "currents_subscribers", :id => false, :force => true do |t|
-    t.integer "current_id"
-    t.integer "user_id"
+  create_table "facebook_templates", :force => true do |t|
+    t.string "template_name", :null => false
+    t.string "content_hash",  :null => false
+    t.string "bundle_id"
   end
 
   create_table "delayed_jobs", :force => true do |t|
@@ -95,8 +94,8 @@ ActiveRecord::Schema.define(:version => 20110309223551) do
     t.text     "description"
     t.decimal  "rating",                            :precision => 10, :scale => 2, :default => 0.0
     t.integer  "inventor_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                                                          :null => false
+    t.datetime "updated_at",                                                                          :null => false
     t.boolean  "flagged"
     t.boolean  "viewed",                                                           :default => false
     t.integer  "inappropriate_flags",                                              :default => 0
@@ -141,8 +140,8 @@ ActiveRecord::Schema.define(:version => 20110309223551) do
     t.integer  "life_cycle_id"
     t.integer  "position"
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "life_cycle_steps_admins", :id => false, :force => true do |t|
@@ -152,15 +151,15 @@ ActiveRecord::Schema.define(:version => 20110309223551) do
 
   create_table "life_cycles", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "oauth_nonces", :force => true do |t|
     t.string   "nonce"
     t.integer  "timestamp"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "oauth_nonces", ["nonce", "timestamp"], :name => "index_oauth_nonces_on_nonce_and_timestamp", :unique => true
@@ -175,8 +174,8 @@ ActiveRecord::Schema.define(:version => 20110309223551) do
     t.string   "verifier",              :limit => 20
     t.datetime "authorized_at"
     t.datetime "invalidated_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
   end
 
   add_index "oauth_tokens", ["token"], :name => "index_oauth_tokens_on_token", :unique => true
@@ -193,15 +192,15 @@ ActiveRecord::Schema.define(:version => 20110309223551) do
     t.string   "name",              :limit => 40
     t.string   "authorizable_type", :limit => 40
     t.integer  "authorizable_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
   end
 
   create_table "roles_users", :id => false, :force => true do |t|
     t.integer  "user_id"
     t.integer  "role_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.integer  "id"
   end
 
