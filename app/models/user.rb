@@ -71,7 +71,7 @@ class User < ActiveRecord::Base
   attr_accessible :name, :email, :password, :password_confirmation, :zip_code, :terms_of_service, :tweet_ideas, :facebook_post_ideas, :notify_on_comments, :notify_on_state
   
   unless !User.table_exists? 
-    acts_as_tsearch :fields => %w(name email zip_code )
+    #! acts_as_tsearch :fields => %w(name email zip_code )
   end
     
   acts_as_state_machine :initial => :pending

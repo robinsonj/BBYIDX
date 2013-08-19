@@ -14,7 +14,7 @@ class ClientApplication < ActiveRecord::Base
   
   acts_as_authorizable
 
-  acts_as_tsearch :fields=>%w(name url support_url callback_url)
+  #! acts_as_tsearch :fields=>%w(name url support_url callback_url)
   
   attr_accessor :token_callback_url
   

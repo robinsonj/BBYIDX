@@ -3,7 +3,7 @@ class Current < ActiveRecord::Base
   acts_as_authorizable
   
   unless !Current.table_exists? 
-    acts_as_tsearch :fields => %w(title description)
+    #! acts_as_tsearch :fields => %w(title description)
   end
   
   belongs_to :inventor, :class_name => 'User'

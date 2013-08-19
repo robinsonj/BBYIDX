@@ -64,15 +64,16 @@ class Idea < ActiveRecord::Base
     send_later :check_spam!
   end
   
-  unless !Idea.table_exists?   
-    acts_as_tsearch :fields => ['title', 'description',
-      '(select array_agg(tags.name)::TEXT
-          from ideas_tags left outer join tags on ideas_tags.tag_id = tags.id
-         where ideas_tags.idea_id = ideas.id)',
-      '(select array_agg(admin_tags.name)::TEXT
-          from ideas_admin_tags left outer join admin_tags on ideas_admin_tags.admin_tag_id = admin_tags.id
-         where ideas_admin_tags.idea_id = ideas.id)']
-  end
+  #unless !Idea.table_exists?   
+  #! acts_as_tsearch :fields => ['title', 'description',
+  #  '(select array_agg(tags.name)::TEXT
+  #      from ideas_tags left outer join tags on ideas_tags.tag_id = tags.id
+  #     where ideas_tags.idea_id = ideas.id)',
+  #  '(select array_agg(admin_tags.name)::TEXT
+  #      from ideas_admin_tags left outer join admin_tags on ideas_admin_tags.admin_tag_id = admin_tags.id
+  #     where ideas_admin_tags.idea_id = ideas.id)']
+  #end
+
   def self.populate_comment_counts(ideas)
     comment_counts = Comment.find :all,
       :select => 'count(*) as comment_count, idea_id',
