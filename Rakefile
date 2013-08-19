@@ -3,6 +3,7 @@
 
 require File.expand_path('../config/application', __FILE__)
 require 'rake'
+require 'rake/clean'
 
 BBYIDX::Application.load_tasks
 CLEAN.include %w(**/*.orig **/*.log **/*.rej)
