@@ -17,8 +17,8 @@ class UserObserver < ActiveRecord::Observer
       user.clear_recently_activated
     end
     if user.active?
-      UserMailer.deliver_password_change_notification(user)              if user.crypted_password_changed?
-      UserMailer.deliver_email_change_notification(user, user.email_was) if user.email_changed?
+      UserMailer.delay.password_change_notification(user)              if user.crypted_password_changed?
+      UserMailer.delay.email_change_notification(user, user.email_was) if user.email_changed?
     end
   end
   

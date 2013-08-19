@@ -17,31 +17,33 @@ class UsersController < ApplicationController
   end
 
   def create
-    if params[:first_user]
-      if User.count > 0  # Critical line! Never set @first_user unless we've verified that this is really the first user.
-        flash[:info] = 'An admin user has already been created.'
-        redirect_to :action => :new
-        return
+    User.transaction do
+      if params[:first_user]
+        if User.count > 0  # Critical line! Never set @first_user unless we've verified that this is really the first user.
+          flash[:info] = 'An admin user has already been created.'
+          redirect_to :action => :new
+          return
+        end
+        @first_user = true
       end
-      @first_user = true
-    end
     
-    cookies.delete :auth_token
-    new_user_from_params
-    if @user.valid?
-      @user.save!
-      @user.register!
-      @user.activate! if @user.linked_to_twitter? || @user.linked_to_facebook?
-      promote_to_superuser if @first_user
-      self.current_user = @user
-      flash[:info] = render_to_string(:partial => 'created')
-      redirect_back_or_default('/')
-      deliver_account_state_notification @user
-    else
-      if @user.linked_to_twitter? || @user.linked_to_facebook?
-        render :action => 'new_via_third_party'
+      cookies.delete :auth_token
+      new_user_from_params
+      if @user.valid?
+        @user.save!
+        @user.register!
+        @user.activate! if @user.linked_to_twitter? || @user.linked_to_facebook?
+        promote_to_superuser if @first_user
+        self.current_user = @user
+        flash[:info] = render_to_string(:partial => 'created')
+        redirect_back_or_default('/')
+        deliver_account_state_notification @user
       else
-        render :action => 'new'
+        if @user.linked_to_twitter? || @user.linked_to_facebook?
+          render :action => 'new_via_third_party'
+        else
+          render :action => 'new'
+        end
       end
     end
   end
@@ -59,7 +61,7 @@ class UsersController < ApplicationController
     @user = User.find_by_email(params[:email])
     raise "No such user" unless @user
     @user.reset_activation_code unless @user.activation_code
-    UserMailer.deliver_signup_notification(@user)
+    UserMailer.delay.signup_notification(@user)
     flash[:info] = render_to_string(:partial => 'created')
     redirect_back_or_default('/')
   end
@@ -75,7 +77,7 @@ class UsersController < ApplicationController
       if user
         user.reset_activation_code
         user.save!
-        UserMailer.deliver_password_reset(user)
+        UserMailer.delay.password_reset(user)
         return render(:action => 'password_reset_sent')
       else
         @not_found = true
@@ -190,9 +192,9 @@ protected
   
   def deliver_account_state_notification(user)
     if user.active?
-      UserMailer.deliver_activation(user)
+      UserMailer.delay.activation(user)
     elsif user.pending?
-      UserMailer.deliver_signup_notification(user) if user.activation_code
+      UserMailer.delay.signup_notification(user) if user.activation_code
     end
   end
 

@@ -51,6 +51,9 @@ GEM
     color (1.4.2)
     delayed_job (4.0.0)
       activesupport (>= 3.0, < 4.1)
+    delayed_job_active_record (4.0.0)
+      activerecord (>= 3.0, < 4.1)
+      delayed_job (>= 3.0, < 4.1)
     dynamic_form (1.1.4)
     erubis (2.7.0)
     facebooker2 (0.0.17)
@@ -150,7 +153,7 @@ DEPENDENCIES
   acts_as_list
   calendar_date_select
   color
-  delayed_job
+  delayed_job_active_record
   dynamic_form
   facebooker2
   gravatar

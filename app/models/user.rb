@@ -74,7 +74,7 @@ class User < ActiveRecord::Base
     #! acts_as_tsearch :fields => %w(name email zip_code )
   end
   
-  state_machine :state, initial: :pending do
+  state_machine :state, initial: :passive do
     state :passive
     state :pending
     state :active
