@@ -73,34 +73,39 @@ class User < ActiveRecord::Base
   unless !User.table_exists? 
     #! acts_as_tsearch :fields => %w(name email zip_code )
   end
+  
+  state_machine :state, initial: :pending do
+    state :passive
+    state :pending
+    state :active
+    state :suspended
+    state :deleted
     
-  acts_as_state_machine :initial => :pending
-  state :passive
-  state :pending, :enter => :registered
-  state :active,  :enter => :do_activate
-  state :suspended
-  state :deleted, :enter => :do_delete
+    after_transition any => :pending, do: :registered
+    after_transition :pending => :active, do: :do_activate
+    after_transition any => :deleted, do: :do_delete
+    
+    event :register do
+      transition :passive => :pending, :if => lambda {|u| !(u.crypted_password.blank? && u.password.blank?) }
+    end
 
-  event :register do
-    transitions :from => :passive, :to => :pending, :guard => Proc.new {|u| !(u.crypted_password.blank? && u.password.blank?) }
-  end
-  
-  event :activate do
-    transitions :from => :pending, :to => :active 
-  end
-  
-  event :suspend do
-    transitions :from => [:passive, :pending, :active], :to => :suspended
-  end
-  
-  event :delete do
-    transitions :from => [:passive, :pending, :active, :suspended], :to => :deleted
-  end
+    event :activate do
+      transition :pending => :active 
+    end
 
-  event :unsuspend do
-    transitions :from => :suspended, :to => :active,  :guard => Proc.new { |u| !u.activated_at.blank? }
-    transitions :from => :suspended, :to => :pending, :guard => Proc.new { |u| !u.activation_code.blank? }
-    transitions :from => :suspended, :to => :passive
+    event :suspend do
+      transition [:passive, :pending, :active] => :suspended
+    end
+
+    event :delete do
+      transition all - :deleted => :deleted
+    end
+
+    event :unsuspend do
+      transition :suspended => :active,  :if => lambda { |u| !u.activated_at.blank? }
+      transition :suspended => :pending, :if => lambda { |u| !u.activation_code.blank? }
+      transition :suspended => :passive
+    end
   end
 
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
