@@ -23,7 +23,7 @@ Want to run it on MySQL? We welcome patches!
 
 You will first need to edit the following files to get the app running in your environemnt:
 
-* config/environment_custom.rb
+* config/bbyidx_customization.rb
 * config/database.yml
 * config/newrelic.yml       (if you want performance metrics from NewRelic)
 * config/twitter.yml        (if you want Twitter integration)
