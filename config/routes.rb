@@ -1,5 +1,9 @@
 BBYIDX::Application.routes.draw do
-  resources :ideas, :member => { :assign => :post } do
+  resources :ideas do
+    member do
+      post 'assign'
+      get  'subscribe'
+    end
     resources :comments # for new/create, idea-specific index
     resource :vote
   end
@@ -7,11 +11,15 @@ BBYIDX::Application.routes.draw do
   resources :currents do
     resources :ideas
   end
-  resource :user, :member => { :disconnect => :get }
-  resource :session, :member => {
-    :create_twitter => :get,
-    :create_facebook => :get
-  }
+  resource :user do
+    get 'disconnect', on: :member
+  end
+  resource :session do
+    member do
+      get :create_twitter
+      get :create_facebook
+    end
+  end
   resources :comments # for global comment list
   resources :tags
   resources :profiles
@@ -48,8 +56,14 @@ BBYIDX::Application.routes.draw do
   # Admin interface
   
   namespace :admin do
-    root :controller => 'home', :action => 'show'
-    resources :users, :member => { :suspend => :put, :unsuspend => :put, :activate => :put}
+    root to: 'home#show'
+    resources :users do
+      member do
+        put 'suspend'
+        put 'unsuspend'
+        put 'activate'
+      end
+    end
     resources :comments
     resources :tags
     resources :ideas
@@ -83,7 +97,7 @@ BBYIDX::Application.routes.draw do
   
   # Top-level routes
   
-  root :controller => 'home', :action => 'show'
+  root to: 'home#show'
   get '/home/nearby-ideas' => 'home#nearby_ideas', as: :home_nearby_ideas
   get ':page' => 'home#show', :page => /about|contact|privacy-policy|terms-of-use/, as: :home
   
