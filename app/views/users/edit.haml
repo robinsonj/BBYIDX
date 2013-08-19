@@ -4,7 +4,7 @@
       %h2.icon.user-edit Account Settings
     .body.group
       = error_messages_for :user
-      - form_for :user, :url => user_path, :html => { :method => :put } do |f|
+      = form_for :user, :url => user_path, :html => { :method => :put } do |f|
         .form-group.inline
           = f.label :name, "Screen name<br /><em>required</em>", :class => 'required'
           = f.text_field :name, :class => "input-text"

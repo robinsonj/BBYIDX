@@ -7,7 +7,7 @@
       .group
         = error_messages_for :user
         %h3== Edit #{h(@user.name)}
-        - form_for current_object, :url => object_url, :html => { :method => :put } do |f|
+        = form_for current_object, :url => object_url, :html => { :method => :put } do |f|
           .form-group.inline
             = f.label :email, "Email"
             = f.text_field :email, :class => "input-text"

@@ -10,7 +10,7 @@
     .body
       .group
         = error_messages_for :idea
-        - form_for current_object, :url => object_url, :html => { :method => :put } do |f|
+        = form_for current_object, :url => object_url, :html => { :method => :put } do |f|
           .form-group.inline
             = f.label nil, "Submitted by"
             - if @idea.inventor

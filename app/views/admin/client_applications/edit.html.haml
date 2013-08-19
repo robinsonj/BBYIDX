@@ -5,7 +5,7 @@
       %h3= link_to '&laquo; Back to app list', admin_client_applications_path
     .body
       .group
-        - form_for current_object, :url => object_url do |f|
+        = form_for current_object, :url => object_url do |f|
           = render :partial => "form", :locals => { :f => f }
           .form-submit.inline
             = submit_tag 'Save Changes', :id => "submit-save-changes", :class => "input-submit"

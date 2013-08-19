@@ -26,7 +26,7 @@
           == (For the next #{time_ago_in_words(comment.created_at + 15.minutes)})
     - if comment.editable_by?(current_user)
       .edit-comment-content{:style => "display:none"}
-        - form_for(comment, :url => comment_url(comment), :html => {:method => :put, :onsubmit => "return validateCommentUpdate(#{comment.id})" }) do |f|
+        = form_for(comment, :url => comment_url(comment), :html => {:method => :put, :onsubmit => "return validateCommentUpdate(#{comment.id})" }) do |f|
           .message.error{:id => "comment-#{comment.id}-missing", :style => 'display: none'}
             Please enter a comment.
           .form-group.inline#post-comment

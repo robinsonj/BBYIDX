@@ -7,7 +7,7 @@
     .body
       .group
         = error_messages_for :current
-        - form_for :current, :url => admin_currents_path, :update => 'submit-current', :has_example_text => true do |f|
+        = form_for :current, :url => admin_currents_path, :update => 'submit-current', :has_example_text => true do |f|
           .form-group.inline
             = f.label :title, "Title"
             = f.text_field :title, :id => "current_title", :class => "input-text big"

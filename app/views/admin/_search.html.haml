@@ -1,6 +1,6 @@
 - unless search_pending_moderation?
   .search
-    - form_remote_tag :url => { :action => :index, :sort => params[:sort], :order => params[:order] }, :html => {:id => 'search_form', :method => :get} do
+    = form_remote_tag :url => { :action => :index, :sort => params[:sort], :order => params[:order] }, :html => {:id => 'search_form', :method => :get} do
       - if current_model == Idea
         %strong Filter by life cycle
         %select{:name => 'life_cycle_step', :class => "input-select"}

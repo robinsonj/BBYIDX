@@ -6,7 +6,7 @@
     .body
       .group
         = error_messages_for :comment
-        - form_for current_object, :url => object_url, :html => { :method => :put } do |f|
+        = form_for current_object, :url => object_url, :html => { :method => :put } do |f|
           .form-group.inline
             = f.label nil, "Submitted by"
             %strong= link_to h(@comment.author.name), edit_admin_user_path(@comment.author)

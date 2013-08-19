@@ -79,7 +79,7 @@
                       :controller => 'comments',
                       :locals => { :show_avatar => true }
         - unless @idea.closed?
-          - form_for :comment, :url => idea_comments_url(@idea), :html => { :onsubmit => 'return validateComment()' } do |f|
+          = form_for :comment, :url => idea_comments_url(@idea), :html => { :onsubmit => 'return validateComment()' } do |f|
             #comment-missing.message.error{:style => 'display: none'}
               Please enter a comment.
             .form-group.inline#post-comment

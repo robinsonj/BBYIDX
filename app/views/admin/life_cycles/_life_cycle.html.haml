@@ -5,7 +5,7 @@
     = ideax_in_place_editor_field :life_cycle, :name
   
   .delete-options{:id => "delete_life_cycle_#{life_cycle.id}"}
-    - form_tag({:action => :delete, :id => life_cycle.id}, {:method => :delete}) do
+    = form_tag({:action => :delete, :id => life_cycle.id}, {:method => :delete}) do
       Reassign ideas to:
       %select{:name => 'reassign_to'}
         %option{:value => ''} [Unassigned]

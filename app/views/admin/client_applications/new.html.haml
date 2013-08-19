@@ -5,7 +5,7 @@
       %h3= link_to '&laquo; Back to app list', admin_client_applications_path
     .body
       .group
-        - form_for current_object, :url => { :action => :create } do |f|
+        = form_for current_object, :url => { :action => :create } do |f|
           = render :partial => "form", :locals => { :f => f }
           .form-submit.inline
             = submit_tag 'Create API Client', :id => "submit-save-changes", :class => "input-submit"
