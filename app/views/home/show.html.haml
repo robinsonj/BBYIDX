@@ -53,7 +53,10 @@
         our Feedback
       .figure
         = image_tag "instruction-4-read-thumb.png", :alt => "Read our Feedback"
-        %p.legend= "We're posting in the comments and on #{link_to 'our blog', '#'}. Let's keep the conversation going."
+        %p.legend
+          We're posting in the comments and on 
+          = link_to 'our blog.', '#'
+          Let's keep the conversation going.
   %hr.hide
 
   #ideas.section

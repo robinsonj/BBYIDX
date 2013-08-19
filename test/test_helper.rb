@@ -93,7 +93,7 @@ class Test::Unit::TestCase
     recipient_list = if recipient.kind_of?(User)
       [recipient.email]
     else
-      recipient.to_a
+      Array(recipient)
     end
     
     @deliveries.each_with_index do |sent, i|
