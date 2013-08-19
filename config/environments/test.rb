@@ -34,7 +34,7 @@ BBYIDX::Application.configure do
 
   config.action_mailer.default_url_options = { :host => "testhost" }
 
-  TWITTER_ENABLED = true  # Always test twitter, even if it's not enabled for dev/production
+  BBYIDX::TWITTER_ENABLED = true  # Always test twitter, even if it's not enabled for dev/production
 
   config.active_support.deprecation = :stderr
 end

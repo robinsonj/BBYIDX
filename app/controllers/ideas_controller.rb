@@ -35,11 +35,11 @@ class IdeasController < ApplicationController
         # Users automatically vote for their own ideas:
         @idea.add_vote!(@idea.inventor)
         
-        if TWITTER_ENABLED && @idea.inventor.linked_to_twitter? && @idea.inventor.tweet_ideas?
+        if BBYIDX::TWITTER_ENABLED && @idea.inventor.linked_to_twitter? && @idea.inventor.tweet_ideas?
           Delayed::Job.enqueue TweetIdeaJob.new(@idea, idea_url(@idea, :title_in_url => false))
         end
         
-        if FACEBOOK_ENABLED && @idea.inventor.linked_to_facebook? && @idea.inventor.facebook_post_ideas?
+        if BBYIDX::FACEBOOK_ENABLED && @idea.inventor.linked_to_facebook? && @idea.inventor.facebook_post_ideas?
           
           # Facebook regularly expires its access tokens. We attach the last one we got the user, but
           # if they're not currently logged in to Facebook, there's no guarantee it will work. So we delay

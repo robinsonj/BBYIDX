@@ -46,7 +46,7 @@
             form.submit()
           }
         
-        - if TWITTER_ENABLED
+        - if BBYIDX::TWITTER_ENABLED
           -# ------- STYLE NEEDED ------
           .form-group.inline.checkbox
             - if @user.linked_to_twitter?
@@ -71,7 +71,7 @@
                 == Displays your Twitter name in your #{SHORT_SITE_NAME} public profile.
           -# ------- /STYLE NEEDED ------
           
-        - if FACEBOOK_ENABLED
+        - if BBYIDX::FACEBOOK_ENABLED
           -# ------- STYLE NEEDED ------
           .form-group.inline.checkbox
             - if @user.linked_to_facebook?

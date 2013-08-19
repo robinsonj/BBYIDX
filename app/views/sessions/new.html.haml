@@ -23,11 +23,11 @@
             = submit_tag 'Log In', :class => "input-submit", :id => "submit-login", :tabindex => 4
       
       -# ------- STYLE NEEDED ------
-      -if TWITTER_ENABLED || FACEBOOK_ENABLED
+      -if BBYIDX::TWITTER_ENABLED || BBYIDX::FACEBOOK_ENABLED
         .group
-          -if TWITTER_ENABLED
+          -if BBYIDX::TWITTER_ENABLED
             .login-button= link_to 'Log in with Twitter', twitter_login_path
-          -if FACEBOOK_ENABLED
+          -if BBYIDX::FACEBOOK_ENABLED
             .login-button= link_to 'Log in with Facebook', '#', :onclick => 'facebook_login(); return false'
       -# ------- /STYLE NEEDED ------
       

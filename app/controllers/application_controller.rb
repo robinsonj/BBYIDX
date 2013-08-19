@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
 
   include AuthenticatedSystem
   include PrettyUrlHelper
-  include Facebooker2::Rails::Controller if FACEBOOK_ENABLED
+  include Facebooker2::Rails::Controller if BBYIDX::FACEBOOK_ENABLED
   
   # See ActionController::RequestForgeryProtection for details
   # Uncomment the :secret if you're not using the cookie session store
@@ -91,7 +91,7 @@ protected
   end
   
   def update_facebook_access_token
-    if FACEBOOK_ENABLED
+    if BBYIDX::FACEBOOK_ENABLED
       # Facebook regularly expires its access tokens. We have client-side JS that checks for a new access token,
       # and places it in a cookie. We then check that cookie here on the server, via current_facebook_*, and
       # save the new access token if it has changed.

@@ -1,4 +1,4 @@
-if FACEBOOK_ENABLED
+if BBYIDX::FACEBOOK_ENABLED
   if ENV['FACEBOOK_APP_ID']
     Facebooker2.configuration = {
       :app_id  => ENV['FACEBOOK_APP_ID'],

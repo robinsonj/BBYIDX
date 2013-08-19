@@ -169,7 +169,7 @@ protected
     @user.twitter_token = params[:user][:twitter_token]
     @user.twitter_secret = params[:user][:twitter_secret]
     @user.twitter_handle = params[:user][:twitter_handle]
-    if FACEBOOK_ENABLED && current_facebook_user
+    if BBYIDX::FACEBOOK_ENABLED && current_facebook_user
       @user.facebook_name = params[:user][:facebook_name]
       @user.facebook_uid = current_facebook_user.id
       @user.facebook_access_token = current_facebook_client.access_token
