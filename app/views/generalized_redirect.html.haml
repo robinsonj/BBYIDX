@@ -7,7 +7,7 @@
 - redirect_params ||= {}
 - message ||= ''
 
-- form_tag redirect_path, :method => redirect_method, :id => 'redirect_form' do
+= form_tag redirect_path, :method => redirect_method, :id => 'redirect_form' do
   - redirect_params.each do |key, value|
     %input{:type => 'hidden', :name => key, :value => value}
 

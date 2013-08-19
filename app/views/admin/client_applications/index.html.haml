@@ -26,7 +26,7 @@
 -#         %td= link_to token.client_application.name, token.client_application.url
 -#         %td= token.authorized_at
 -#         %td
--#           - form_tag :controller => 'oauth', :action => 'revoke' do
+-#           = form_tag :controller => 'oauth', :action => 'revoke' do
 -#             = hidden_field_tag 'token', token.token
 -#             = submit_tag "Revoke!"
 -# 
