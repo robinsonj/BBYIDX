@@ -9,6 +9,8 @@ Bundler.require(:default, Rails.env) if defined?(Bundler)
 
 module BBYIDX
   class Application < Rails::Application
+    config.assets.enabled = false  #! for now
+    
     config.autoload_paths += %W(
       #{config.root}/lib
     )

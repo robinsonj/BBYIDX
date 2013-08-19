@@ -34,7 +34,7 @@ gem 'facebooker2'
 gem 'mogli'
 
 
-# Needs replacement:
+#! Needs replacement:
 gem 'ym4r'
 # gem 'restful_authentication'
 # gem 'fixture_scenarios'
