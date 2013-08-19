@@ -1,6 +1,4 @@
 class CommentsController < ApplicationController
-  has_rakismet
-  
   before_filter :login_required, :except => [:index, :show]
   
   before_filter :owner_required, :only => :update

@@ -1,4 +1,14 @@
 class Comment < ActiveRecord::Base
+  include Rakismet::Model
+  rakismet_attrs :author       => lambda {author.name},
+                 :author_url   => lambda {self.comment_url},
+                 :author_email => lambda {author.email},
+                 
+                 :user_ip    => :ip,
+                 :user_agent => :agent,
+                 :content    => :text,
+                 :permalink  => lambda {self.comment_path}
+  
   acts_as_authorizable
   
   belongs_to :idea
@@ -32,7 +42,7 @@ class Comment < ActiveRecord::Base
   
   include InappropriateFlag
   unless !Comment.table_exists? 
-    acts_as_tsearch :fields=>%w(text)
+    #! acts_as_tsearch :fields=>%w(text)
   end
   
   def after_create
