@@ -70,10 +70,9 @@ ActiveRecord::Schema.define(:version => 20110309223551) do
     t.date     "submission_deadline"
   end
 
-  create_table "facebook_templates", :force => true do |t|
-    t.string "template_name", :null => false
-    t.string "content_hash",  :null => false
-    t.string "bundle_id"
+  create_table "currents_subscribers", :id => false, :force => true do |t|
+    t.integer "current_id"
+    t.integer "user_id"
   end
 
   create_table "delayed_jobs", :force => true do |t|
@@ -85,8 +84,8 @@ ActiveRecord::Schema.define(:version => 20110309223551) do
     t.datetime "locked_at"
     t.datetime "failed_at"
     t.text     "locked_by"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
   create_table "ideas", :force => true do |t|

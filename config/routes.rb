@@ -33,9 +33,9 @@ BBYIDX::Application.routes.draw do
   
   # connect '/fb/:action', :controller => 'fb_connect'
 
-  map.idea_pretty         '/ideas/:id/:title',                   :controller => 'ideas',    :action => 'show'
-  map.profile_pretty      '/profiles/:id/:title',                :controller => 'profiles', :action => 'show'
-  map.current_pretty      '/currents/:id/:title',                :controller => 'currents', :action => 'show'
+  get '/ideas/:id/:title',    to: 'ideas#show',    as: :idea_pretty   
+  get '/profiles/:id/:title', to: 'profiles#show', as: :profile_pretty
+  get '/currents/:id/:title', to: 'currents#show', as: :current_pretty
   
   # OAuth stuff
   

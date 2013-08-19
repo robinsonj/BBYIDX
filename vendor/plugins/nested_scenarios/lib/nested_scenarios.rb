@@ -1,4 +1,4 @@
-if RAILS_ENV == 'test'
+if Rails.env.test?
   require 'test/unit/testcase'
   require 'test/unit/testsuite'
   require 'active_record/fixtures'

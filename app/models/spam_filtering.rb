@@ -1,12 +1,13 @@
 module SpamFiltering
   def self.included(klass)
     klass.class_eval do
-      has_rakismet :author       => proc { spam_filtering_user.name },
-                   :author_email => proc { spam_filtering_user.email },
-                   :user_ip    => :ip,
-                   :user_agent => :agent,
-                   :content    => :spam_filtering_text,
-                   :permalink  => proc { "#{Rakismet::URL}/#{self.class.name.pluralize.underscore}/#{self.id}" }
+      include Rakismet::Model
+      rakismet_attrs :author       => lambda { spam_filtering_user.name },
+                     :author_email => lambda { spam_filtering_user.email },
+                     :user_ip    => :ip,
+                     :user_agent => :agent,
+                     :content    => :spam_filtering_text,
+                     :permalink  => lambda { "#{Rakismet::URL}/#{self.class.name.pluralize.underscore}/#{self.id}" }
   
       validates_presence_of :ip, :on => :create
       validates_presence_of :user_agent, :on => :create
