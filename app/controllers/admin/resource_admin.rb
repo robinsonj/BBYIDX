@@ -60,7 +60,6 @@ module Admin
         helper_method :search_pending_moderation?
         helper_method :sort_by
         helper_method :sort_params
-        helper_method :search_ideas_xapian
       end
     end
     

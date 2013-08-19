@@ -27,7 +27,7 @@ module SearchHelper
       :conditions => ['users.state = ? and ideas.hidden = ?', 'active', false] }
     @query_title = "Ideas"
     
-    search_params = (params[:search] || 'recent').to_a.dup
+    search_params = Array(params[:search] || 'recent').dup
     while !search_params.empty? do
       case param = search_params.shift
       when 'recent'
