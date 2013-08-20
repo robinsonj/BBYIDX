@@ -11,7 +11,6 @@ class IdeasController < ApplicationController
   before_filter :check_ownership, :only => [:update]
   
   # Content cleanup & population
-  before_filter :strip_example_text
   before_filter :add_search_feed, :only => :index
   before_filter :add_comments_feed, :only => [:show, :update]
   
@@ -230,18 +229,5 @@ class IdeasController < ApplicationController
   helper_method :has_voted?
   helper_method :idea_owner?
   helper_method :flagged_as_inappropriate?
-
-private 
-  
-  # In case Javascript failed to remove example text (IE has trouble with this), we strip it here.
-  # example_text.js appends \xA0 (a non-breaking space) to distinguish example text. If we see that
-  # on a param, out it goes!
-  def strip_example_text
-    if params[:idea]
-      params[:idea].each_key do |key|
-        params[:idea][key] = '' if params[:idea][key] =~ /\xA0$/
-      end
-    end
-  end
   
 end
