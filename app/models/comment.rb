@@ -45,7 +45,7 @@ class Comment < ActiveRecord::Base
   end
   
   def detect_spam
-    self.marked_spam = self.spam? if Rakismet::KEY
+    self.marked_spam = self.spam? if Rails.application.config.rakismet[:key]
     true
   end
   

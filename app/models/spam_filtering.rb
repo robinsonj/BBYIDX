@@ -21,7 +21,7 @@ module SpamFiltering
   
   def check_spam!
     Timeout::timeout(60) do
-      self.marked_spam ||= self.spam? if Rakismet::KEY
+      self.marked_spam ||= self.spam? if Rails.application.config.rakismet[:key]
       self.spam_checked = true
       self.save!
     end
