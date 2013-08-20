@@ -98,7 +98,7 @@ module ApplicationHelper
       opts[:default] = request.protocol + request.host_with_port + opts[:default]
     end
     
-    opts[:default]
+    "<img src='#{h opts[:default]}' width='#{h opts[:size]}' height='#{h opts[:size]}'>".html_safe
     #! use gravatar
   end
   
