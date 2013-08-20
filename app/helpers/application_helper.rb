@@ -92,6 +92,16 @@ module ApplicationHelper
       'total-count' => p.total_entries }
   end
   
+  def avatar_for(user, opts = {})
+    opts[:default] ||= "/images/default-avatar-#{opts[:size] || 50}.png"
+    unless opts[:default] =~ /:\/\//
+      opts[:default] = request.protocol + request.host_with_port + opts[:default]
+    end
+    
+    opts[:default]
+    #! use gravatar
+  end
+  
 private
   
   def flagged_as_inappropriate_session_key(model)

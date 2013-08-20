@@ -2,7 +2,7 @@
   %strong= contributor_counter + 1
   /*------- STYLE NEEDED ------*/
   .avatar
-    = gravatar_for contributor, :size => 18
+    = avatar_for contributor, :size => 18
   /*------- /STYLE NEEDED ------*/
   = link_to h(contributor.name), profile_path(contributor)
   %em== #{(contributor.send(points_method) || 0).round} points

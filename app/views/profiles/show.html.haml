@@ -2,7 +2,7 @@
   .main.panel.section
     .header
       /*------- STYLE NEEDED ------*/
-      = gravatar_for @user, :size => 64
+      = avatar_for @user, :size => 64
       /*------- /STYLE NEEDED ------*/
       - if @user.admin?
         %h2.icon.user.admin=h @user.name
