@@ -9,17 +9,17 @@
           %label{ :for => "idea-title" }
             %strong Idea
             %small Your idea, in short
-          = f.text_field :title, :example => 'My idea is...', :maxlength => 120, :size => 51, :id => "idea-title", :class => "input-text"
+          = f.text_field :title, :placeholder => 'My idea is...', :maxlength => 120, :size => 51, :id => "idea-title", :class => "input-text"
         #idea-description-group.form-group.inline
           %label{ :for => "idea-description" }
             %strong Description
             %small A brief explanation
-          = f.text_area :description, :example => "It'd be great if...", :id => "idea-description", :class => "input-textarea", :rows => "5", :cols => "30"
+          = f.text_area :description, :placeholder => "It'd be great if...", :id => "idea-description", :class => "input-textarea", :rows => "5", :cols => "30"
         #idea-tags-group.form-group.inline
           %label{ :for => "idea-tags" }
             %strong Tags
             %small Separate with commas
-          = f.text_field :tag_names, :example => 'music, home entertainment, discount', :class => "input-text"
+          = f.text_field :tag_names, :placeholder => 'music, home entertainment, discount', :class => "input-text"
           = submit_tag 'Share My Idea', :class => "input-submit"
       .aside
         %div

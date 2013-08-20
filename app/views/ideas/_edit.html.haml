@@ -2,10 +2,10 @@
 = form_for :idea, :remote => true, :url => idea_path, :method => 'put', :update => 'edit-idea-1', :has_example_text => true do |f|
   #idea-title-group.form-group.inline
     = f.label :title, "Idea"
-    = f.text_field :title, :example => 'My idea is...', :maxlength => 120, :size => 51, :id => "idea-title", :class => "input-text big"
+    = f.text_field :title, :placeholder => 'My idea is...', :maxlength => 120, :size => 51, :id => "idea-title", :class => "input-text big"
   #idea-description-group.form-group.inline
     = f.label :description, "Description"
-    = f.text_area :description, :example => "It'd be great if...", :id => "idea-description", :class => "input-textarea big", :rows => "7", :cols => "30"
+    = f.text_area :description, :placeholder => "It'd be great if...", :id => "idea-description", :class => "input-textarea big", :rows => "7", :cols => "30"
   #idea-tags-group.form-group.inline
     %label{:for => "tags"} Tags
     = render :partial => 'ideas/tag_editor', :locals => { :f => f }
