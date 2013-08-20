@@ -9,6 +9,8 @@ module BBYIDX
   LONG_SITE_NAME = "#{COMPANY_NAME} #{BBYIDX::SHORT_SITE_NAME}"
 
   PRODUCTION_HOST = 'bbyidx.com'
+  
+  EMAIL_FROM_ADDRESS = "#{BBYIDX::SHORT_SITE_NAME.downcase}@#{PRODUCTION_HOST}"
 
   # Specify a long random string for SESSION_SECRET to secure user sessions
   SESSION_SECRET = ENV['SESSION_SECRET']

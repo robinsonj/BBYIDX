@@ -29,7 +29,7 @@ BBYIDX::Application.routes.draw do
   get  '/logout'                             => 'sessions#destroy',          as: :logout
   get  '/signup'                             => 'users#new',                 as: :signup
   get  '/ideas/search/*search'               => 'ideas#index',               as: :idea_search
-  get  '/user/send_activation'               => 'users#send_activation',     as: :send_activation
+  post '/user/send_activation'               => 'users#send_activation',     as: :send_activation
   get  '/user/activate/:activation_code'     => 'users#activate',            as: :activate
   get  '/user/password/forgot'               => 'users#forgot_password',     as: :forgot_password
   post '/user/password/forgot'               => 'users#send_password_reset', as: :send_password_reset
