@@ -1,26 +1,13 @@
-/*
- * Registers a callback which copies the csrf token into the
- * X-CSRF-Token header with each ajax request.  Necessary to 
- * work with rails applications which have fixed
- * CVE-2011-0447
- *
- * More info:
- *   http://weblog.rubyonrails.org/2011/2/8/csrf-protection-bypass-in-ruby-on-rails
- *   http://weblog.rubyonrails.org/assets/2011/2/8/prototype-snippet.js
-*/
 
-Ajax.Responders.register({
-  onCreate: function(request) {
-    var csrf_meta_tag = $$('meta[name=csrf-token]')[0];
 
-    if (csrf_meta_tag) {
-      var header = 'X-CSRF-Token',
-          token = csrf_meta_tag.readAttribute('content');
-
-      if (!request.options.requestHeaders) {
-        request.options.requestHeaders = {};
-      }
-      request.options.requestHeaders[header] = token;
+jQuery(function($) {
+  $('[data-remote=true]').on('ajax:before',   function() { $(this).addClass('loading') })
+  $('[data-remote=true]').on('ajax:complete', function() { $(this).removeClass('loading') })
+  $('[data-remote=true]').on('ajax:success', function(event, data, status, xhr) {
+    var update = $(this).data('update')
+    if(update) {
+      // Using "id=" matcher instead of "#" because our ids are sometimes note unique! (Ouch. But true.)
+      $('[id="' + update + '"]').html(data)
     }
-  }
-});
+  })
+})

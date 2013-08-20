@@ -86,6 +86,10 @@ protected
     @feeds << { :href => @ideas_rss_url, :title => "#{BBYIDX::LONG_SITE_NAME} New Ideas RSS Feed" }
   end
   
+  def ajax_request?
+    request.headers['X-Requested-With'] == 'XMLHttpRequest'  #! Does this work in all browsers?
+  end
+  
   def xml_request?
     request.format == :xml
   end

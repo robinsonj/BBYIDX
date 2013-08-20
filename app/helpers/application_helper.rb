@@ -4,6 +4,20 @@ module ApplicationHelper
   include SearchHelper
   include ActionView::Helpers::JavaScriptHelper
   
+  #! ------ stopgap helpers ------
+  
+  def visual_effect(*args)  #! stopgap for 3.2 port
+    puts '---------------------> visual_effect needs to be replaced for 3.2'
+  end
+  
+  def link_to_remote(text, opts)
+    opts.reverse_merge! method: :post, remote: true, 'data-type' => 'html'
+    path = opts.delete(:url)
+    opts['data-update'] = opts.delete(:update)
+    link_to text, path, opts
+  end
+  
+  
   def logged_in?
     !current_user.nil?
   end
