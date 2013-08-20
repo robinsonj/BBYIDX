@@ -1,6 +1,6 @@
 -# This partial shared by /ideas/new, home page, and drop-down.
 = error_messages_for :current
-= form_for :current, :remote => true, :url => admin_currents_path, :update => 'submit-current' do |f|
+= form_for_ajax :current, :url => admin_currents_path, :update => 'submit-current' do |f|
   #current-title-group.form-group
     = f.label :title, "Current"
     = f.text_field :title, :placeholder => 'My current is...', :maxlength => 120, :size => 51, :id => "current-title", :class => "input-text big"

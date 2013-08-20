@@ -10,7 +10,7 @@
   - link_dom_id = "link_#{results_dom_id}"
   .results-placeholder{:id => results_dom_id, :style => 'display:none'}
   .more{:id => link_dom_id}
-    = link_to_remote 'More...',
+    = link_to_ajax 'More...',
         :url => profile_path(@user, :recent => model, :offset => offset + limit, :limit => limit * 5 / 4 + 1),
         :update => results_dom_id,
         :complete => visual_effect(:blind_down, results_dom_id, :duration => 0.5) + visual_effect(:fade, link_dom_id, :duration => 0.3)

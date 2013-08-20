@@ -4,12 +4,12 @@
     = link_to 'Account settings', edit_user_path
   -elsif current_user.subscribed_ideas.include?(@idea)
     You will receive email notifications for new comments on this idea.
-    = link_to_remote 'Stop watching',
+    = link_to_ajax 'Stop watching',
                      :url => unsubscribe_idea_path(@idea),
                      :update => 'subscription',
                      :complete => visual_effect(:highlight, 'subscription', :duration => 0.8)
   -else
-    = link_to_remote 'Watch this idea',
+    = link_to_ajax 'Watch this idea',
                      :url => subscribe_idea_path(@idea),
                      :update => 'subscription',
                      :complete => visual_effect(:highlight, 'subscription', :duration => 0.8)

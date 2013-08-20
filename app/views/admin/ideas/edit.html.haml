@@ -5,7 +5,7 @@
       %h3= link_to "&laquo; Idea list", admin_ideas_path
       -# ------- STYLE NEEDED ------
       - if !current_object.duplicate_of_id
-        = link_to_remote h('Add to Duplicates Bucket'), :url => admin_bucket_add_idea_path(current_object), :method => :put, :update => 'bucket'
+        = link_to_ajax h('Add to Duplicates Bucket'), :url => admin_bucket_add_idea_path(current_object), :method => :put, :update => 'bucket'
       -# ------- /STYLE NEEDED ------
     .body
       .group

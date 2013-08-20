@@ -2,10 +2,10 @@
 -if editor?
   %br
   - if @user.pending?
-    = link_to_remote 'Activate User', :url => activate_admin_user_path(@user), :method => :put, :update => 'user-state'
+    = link_to_ajax 'Activate User', :url => activate_admin_user_path(@user), :method => :put, :update => 'user-state'
     (if user cannot receive confirmation email)
   - elsif @user.suspended?
-    = link_to_remote 'Unsuspend User', :url => unsuspend_admin_user_path(@user), :method => :put, :update => 'user-state'
+    = link_to_ajax 'Unsuspend User', :url => unsuspend_admin_user_path(@user), :method => :put, :update => 'user-state'
   - else
-    = link_to_remote 'Suspend User', :url => suspend_admin_user_path(@user), :method => :put, :update => 'user-state'
+    = link_to_ajax 'Suspend User', :url => suspend_admin_user_path(@user), :method => :put, :update => 'user-state'
     (hides all ideas and comments)

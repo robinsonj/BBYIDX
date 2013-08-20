@@ -7,4 +7,4 @@
       -# This doesn't get evaluated to TRUE in an ajax update.
       %span You Voted!
     - elsif !idea.closed?
-      = link_to_remote 'Vote!', :update => dom_id, :url => idea_vote_path(idea.id), :complete => visual_effect(:highlight, dom_id, :duration => 0.8)
+      = link_to_ajax 'Vote!', :update => dom_id, :url => idea_vote_path(idea.id), :complete => visual_effect(:highlight, dom_id, :duration => 0.8)

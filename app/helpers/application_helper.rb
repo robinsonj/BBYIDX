@@ -10,11 +10,17 @@ module ApplicationHelper
     puts '---------------------> visual_effect needs to be replaced for 3.2'
   end
   
-  def link_to_remote(text, opts)
+  def link_to_ajax(text, opts)
     opts.reverse_merge! method: :post, remote: true, 'data-type' => 'html'
     path = opts.delete(:url)
     opts['data-update'] = opts.delete(:update)
     link_to text, path, opts
+  end
+  
+  def form_for_ajax(record, opts = {}, &block)
+    opts.reverse_merge! remote: true, 'data-type' => 'html', html: {}
+    opts[:html]['data-update'] = opts.delete(:update)
+    form_for(record, opts, &block)
   end
   
   

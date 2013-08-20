@@ -2,12 +2,12 @@
   %li.subscription
     -if current_user.subscribed_currents.include?(@current)
       You will receive email notifications for new ideas in this current.
-      = link_to_remote 'Stop watching',
+      = link_to_ajax 'Stop watching',
                        :url => unsubscribe_current_path(@current),
                        :update => 'subscription',
                        :complete => visual_effect(:highlight, 'subscription', :duration => 0.8)
     -else
-      = link_to_remote 'Watch this current',
+      = link_to_ajax 'Watch this current',
                        :url => subscribe_current_path(@current),
                        :update => 'subscription',
                        :complete => visual_effect(:highlight, 'subscription', :duration => 0.8)
