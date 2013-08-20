@@ -29,17 +29,23 @@ module Admin
       end
     
       response_for :index do |format|
-        format.html { render :action => 'index' }
-        format.js   { render :partial => 'index' }
+        format.html do
+          if ajax_request?
+            render :partial => 'index' 
+          else
+            render :action => 'index' 
+          end
+        end
       end
     
       response_for :update do |format|
         format.html do
-          flash[:info] = 'Changes saved.'
-          redirect_to edit_admin_idea_path(@idea)
-        end
-        format.js do
-          render :text => 'OK'
+          if ajax_request?
+            render :text => 'OK'
+          else
+            flash[:info] = 'Changes saved.'
+            redirect_to edit_admin_idea_path(@idea)
+          end
         end
       end
     end

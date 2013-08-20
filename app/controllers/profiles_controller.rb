@@ -11,9 +11,12 @@ class ProfilesController < ApplicationController
   
   def show
     respond_to do |format|
-      format.html
+      format.html do
+        if ajax_request?
+          render :text => render_recent(params)
+        end
+      end
       format.xml
-      format.js { render :text => render_recent(params) }
     end
   end
   

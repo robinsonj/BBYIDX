@@ -86,16 +86,17 @@ module AuthenticatedSystem
       flash[:info] = "#{message} to #{request_as_words}."
       respond_to do |format|
         format.html do
-          store_location return_to_args
-          redirect_to login_path
-        end
-        format.js do
-          store_location return_to_args
-          render :template => 'generalized_redirect', :layout => false, :locals => { :redirect_path => login_url, :message => 'Logging in...' }
-        end
-        format.any do
-          store_location return_to_args
-          redirect_to login_path
+          if ajax_request?
+            store_location return_to_args
+            render :template => 'generalized_redirect', :layout => false, :locals => { :redirect_path => login_url, :message => 'Logging in...' }
+          else
+            store_location return_to_args
+            redirect_to login_path
+          end
+          format.any do
+            store_location return_to_args
+            redirect_to login_path
+          end
         end
       end
     end

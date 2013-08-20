@@ -73,18 +73,19 @@ class IdeasController < ApplicationController
     
     response_for :create do |format|
       format.html do
-        if @idea.inventor
-          redirect_to idea_path(@idea)
+        if ajax_request?
+          if @idea.inventor
+            render :template => 'generalized_redirect', :layout => false,
+              :locals => { :redirect_path => idea_path(@idea), :message => 'Creating idea...' }
+          else
+            login_required assign_idea_path(@idea), :post
+          end
         else
-          login_required assign_idea_path(@idea), :post
-        end
-      end
-      format.js do
-        if @idea.inventor
-          render :template => 'generalized_redirect', :layout => false,
-            :locals => { :redirect_path => idea_path(@idea), :message => 'Creating idea...' }
-        else
-          login_required assign_idea_path(@idea), :post
+          if @idea.inventor
+            redirect_to idea_path(@idea)
+          else
+            login_required assign_idea_path(@idea), :post
+          end
         end
       end
       format.xml do
@@ -93,23 +94,29 @@ class IdeasController < ApplicationController
     end
     
     response_for :create_fails do |format|
-      format.html { render :template => 'ideas/new' }
-      format.js   { render :partial => 'new' }
+      format.html do
+        if ajax_request?
+          render :partial => 'new' 
+        else
+          render :template => 'ideas/new' 
+        end
+      end
       format.xml  { render :template => 'validation_errors' }
     end
     
     response_for :update do |format|
       format.html do
-        redirect_to idea_path(@idea)
-      end
-      format.js do
-        render :template => 'generalized_redirect', :layout => false,
-          :locals => { :redirect_path => idea_path(@idea), :message => 'Updating idea...' }
+        if ajax_request?
+          render :template => 'generalized_redirect', :layout => false,
+            :locals => { :redirect_path => idea_path(@idea), :message => 'Updating idea...' }
+        else
+          redirect_to idea_path(@idea)
+        end
       end
     end
     
     response_for :update_fails do |format|
-      format.js { render :partial => 'edit' }
+      format.html { render :partial => 'edit' }
     end
     
   end
@@ -169,7 +176,7 @@ class IdeasController < ApplicationController
         end
       end
       
-      format.js do
+      format.html do
         render :partial => 'subscription'
       end
     end

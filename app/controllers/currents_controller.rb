@@ -36,11 +36,12 @@ class CurrentsController < ApplicationController
     
     respond_to do |format|
       format.html do
-        flash[:info] = 'You are no longer subscribed to notifications of new ideas on this current.' if !enabled
-        redirect_to :action => 'show'
-      end
-      format.js do
-        render :partial => 'subscription'
+        if ajax_request?
+          render :partial => 'subscription'
+        else
+          flash[:info] = 'You are no longer subscribed to notifications of new ideas on this current.' if !enabled
+          redirect_to :action => 'show'
+        end
       end
     end
   end

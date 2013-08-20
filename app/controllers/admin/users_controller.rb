@@ -31,8 +31,13 @@ module Admin
       end
     
       response_for :index do |format|
-        format.html { render :action => 'index' }
-        format.js   { render :partial => 'index' }
+        format.html do
+          if ajax_request?
+            render :partial => 'index' 
+          else
+            render :action => 'index' 
+          end
+        end
       end
       
       response_for :update do

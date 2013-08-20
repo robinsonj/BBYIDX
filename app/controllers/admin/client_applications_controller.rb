@@ -7,8 +7,13 @@ module Admin
       actions :index, :show, :new, :create, :edit, :update, :destroy
       
       response_for :index do |format|
-        format.html { render :action => 'index' }
-        format.js   { render :partial => 'index' }
+        format.html do
+          if ajax_request?
+            render :partial => 'index' 
+          else
+            render :action => 'index' 
+          end
+        end
       end
     end
     

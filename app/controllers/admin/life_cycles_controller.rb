@@ -25,7 +25,7 @@ module Admin
     
     def create
       respond_to do |format|
-        format.js do
+        format.html do
           LifeCycle.transaction do
             new_cycle = LifeCycle.create :name => params[:value]
             
@@ -53,7 +53,7 @@ module Admin
     
     def create_step
       respond_to do |format|
-        format.js do
+        format.html do
           update_life_cycle do |life_cycle|
             new_step = life_cycle.steps.create :name => params[:value]
             if new_step.valid?

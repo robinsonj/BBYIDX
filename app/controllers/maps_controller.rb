@@ -21,9 +21,10 @@ class MapsController < ApplicationController
     end
     
     respond_to do |format|
-      format.html
-      format.js do
-        render :text => @map
+      format.html do
+        if ajax_request?
+          render :text => @map
+        end
       end
     end
   end
