@@ -34,7 +34,7 @@ BBYIDX::Application.routes.draw do
   get  '/user/password/forgot'               => 'users#forgot_password',     as: :forgot_password
   post '/user/password/forgot'               => 'users#send_password_reset', as: :send_password_reset
   get  '/user/password/new/:activation_code' => 'users#new_password',        as: :password_reset
-  get  '/:model/:id/inappropriate'           => 'inappropriate#flag',        as: :flag_inappropriate
+  post '/:model/:id/inappropriate'           => 'inappropriate#flag',        as: :flag_inappropriate
   get  '/user/authorize_twitter'             => 'users#authorize_twitter',   as: :authorize_twitter
 
   # Facebook stuff
