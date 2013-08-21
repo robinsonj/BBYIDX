@@ -3,6 +3,6 @@ if BBYIDX::TWITTER_ENABLED
     { 'key'    => ENV['TWITTER_API_KEY'],
       'secret' => ENV['TWITTER_API_SECRET'] }
   else
-    YAML.load(File.read(Rails.root.to_s + '/config/' + 'twitter.yml'))[RAILS_ENV]
+    YAML.load(File.read(Rails.root.to_s + '/config/' + 'twitter.yml'))[Rails.env]
   end
 end

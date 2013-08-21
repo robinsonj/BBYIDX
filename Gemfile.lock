@@ -74,6 +74,7 @@ GEM
     in_place_editing (1.2.0)
     journey (1.0.4)
     json (1.8.0)
+    lazy (0.9.6)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -161,6 +162,7 @@ DEPENDENCIES
   haml
   httparty
   in_place_editing
+  lazy
   make_resourceful
   mash
   mocha

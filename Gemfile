@@ -18,6 +18,7 @@ group :test do
  gem 'thoughtbot-shoulda'
  gem 'mocha'
  gem 'nokogiri'
+ gem 'lazy'
 end
 gem 'test-unit'
 

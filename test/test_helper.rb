@@ -1,8 +1,5 @@
-ENV["RAILS_ENV"] = "test"
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
-require "#{Rails.root}/vendor/gems/lazy-0.9.5/lazy"
-gem 'thoughtbot-shoulda'
 require 'lazy'
 require 'shoulda'
 require 'oauth/signature/plaintext'
@@ -16,7 +13,7 @@ begin
   ActiveRecord::Base.connection.execute 'CREATE TEXT SEARCH CONFIGURATION public.default ( COPY = pg_catalog.english )'
 rescue ActiveRecord::StatementInvalid=>x
 end
-[Idea, Comment, User, ClientApplication].each { |model| model.create_vector } # drops & recreates tsearch2's vector column
+#! [Idea, Comment, User, ClientApplication].each { |model| model.create_vector } # drops & recreates tsearch2's vector column
 
 # Ensure that tests run offline
 class Net::HTTP
