@@ -2,7 +2,7 @@
 
 %tr{:class => 'data-row', :onclick => "document.location = '#{edit_admin_current_path(current.id)}'"}
   %td.no-overflow
-    .primary.excerpt= h(current.title)
-    .secondary.excerpt= h(truncate(current.description, :length => 140, :separator => ' '))
+    .primary.excerpt= current.title
+    .secondary.excerpt= truncate(current.description, :length => 140, :separator => ' ')
   %td= current.idea_count
   %td= current.created_at.strftime('%m/%d/%y')

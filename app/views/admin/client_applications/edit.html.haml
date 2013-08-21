@@ -12,4 +12,4 @@
 
         -# ------- STYLE NEEDED ------
         -# Put this in some kind of red warning box or something
-        = link_to 'Delete this application', admin_client_application_path(current_object), :confirm => "Do you really want to delete #{h current_object.name}? This application will no longer work, and this is not undoable.", :method => :delete
+        = link_to 'Delete this application', admin_client_application_path(current_object), :confirm => "Do you really want to delete #{current_object.name}? This application will no longer work, and this is not undoable.", :method => :delete

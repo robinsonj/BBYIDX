@@ -52,7 +52,7 @@
             - if @user.linked_to_twitter?
               %p
                 Linked to Twitter account:
-                %b=h @user.twitter_handle
+                %b= @user.twitter_handle
                 - if @user.twitter_is_only_auth_method?
                   %p.note To unlink your Twitter account, first enter a password in the form above.
                 - else
@@ -77,7 +77,7 @@
             - if @user.linked_to_facebook?
               %p
                 Linked to Facebook account:
-                %b=h @user.facebook_name
+                %b= @user.facebook_name
                 - if @user.facebook_is_only_auth_method?
                   %p.note To unlink your Facebook account, first enter a password in the form above.
                 - else

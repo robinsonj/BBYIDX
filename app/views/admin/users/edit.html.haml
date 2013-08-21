@@ -6,7 +6,7 @@
     .body
       .group
         = error_messages_for :user
-        %h3== Edit #{h(@user.name)}
+        %h3== Edit #{@user.name}
         = form_for current_object, :url => object_url, :html => { :method => :put } do |f|
           .form-group.inline
             = f.label :email, "Email"
@@ -25,13 +25,13 @@
             = f.password_field :password_confirmation, :class => "input-text"
           .form-group.inline
             = f.label :twitter_handle, "Twitter Username"
-            =h @user.twitter_handle
+            = @user.twitter_handle
           .form-group.inline.checkbox
             = f.check_box :tweet_ideas, :class => "input-checkbox"
             = f.label :tweet_ideas, "Tweet ideas"
           .form-group.inline
             = f.label :facebook_name, "Facebook Username"
-            =h @user.facebook_name
+            = @user.facebook_name
           .form-group.inline.checkbox
             = f.check_box :facebook_post_ideas, :class => "input-checkbox"
             = f.label :facebook_post_ideas, "Post ideas on Facebook"
@@ -44,13 +44,13 @@
             = f.label nil, "Owned Currents"
             %ul
               - @user.currents.each do |current|
-                %li=link_to h(current.title), edit_admin_current_path(current)
+                %li=link_to current.title, edit_admin_current_path(current)
           .form-group.inline
             = f.label nil, "Invited Currents"
             #user-currents
               %ul
                 - @user.is_invitee_for_what.each do |current|
-                  %li=link_to h(current.title), edit_admin_current_path(current)
+                  %li=link_to current.title, edit_admin_current_path(current)
               Invite to 
               %select{:name=>"invite_to", :id=>"invite_to"}
                 = options_for_select [[nil,nil]] + Current.all_except_default.map{ |x| [x.title,x.id] }
@@ -77,12 +77,12 @@
             .form-group.inline.checkbox
               .left-padded
                 - all_life_cycles.each do |life_cycle|
-                  %strong=h life_cycle.name
+                  %strong= life_cycle.name
                   %ol
                     - life_cycle.steps.each do |step|
                       %li
                         = check_box_tag "user[life_cycle_step_ids][]", step.id, @user.life_cycle_step_ids.include?(step.id)
-                        %label.checkbox-label=h step.name
+                        %label.checkbox-label= step.name
             :javascript
               function adminFlagChanged() {
                 $('idea-admin').style.display = $('user_admin').checked ? '' : 'none'
@@ -94,14 +94,14 @@
         = disable_form_unless_editor current_object
         %br
         .group.slate
-          %h3== #{h(@user.name)}'s Ideas
+          %h3== #{@user.name}'s Ideas
           %ol.user-ideas
             - @user.ideas.each do |idea|
-              %li= link_to h(idea.title), edit_admin_idea_path(idea)
+              %li= link_to idea.title, edit_admin_idea_path(idea)
         .group.slate
-          %h3== #{h(@user.name)}'s Comments
+          %h3== #{@user.name}'s Comments
           %ol.user-comments
             - @user.comments.each do |comment|
-              %li= link_to h(comment.text), edit_admin_comment_path(comment)
+              %li= link_to comment.text, edit_admin_comment_path(comment)
     .footer
   

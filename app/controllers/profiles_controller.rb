@@ -29,7 +29,7 @@ class ProfilesController < ApplicationController
       else raise 'Invalid value for "recent" param'
     end
     
-    render_to_string :partial => 'recent', :locals => {
+    render_to_string_html_safe :partial => 'recent', :locals => {
       :model => model,
       :collection => collection,
       :offset => params[:offset].to_i,

@@ -28,6 +28,10 @@ module ApplicationHelper
     !current_user.nil?
   end
   
+  def render_to_string_html_safe(*args)
+    render_to_string(*args).html_safe
+  end
+  
   def user_formatted_text(text)
     # Handles free-form text for ideas and comments.
     # We could drop in some more elaborate formatting rules here if we want to,

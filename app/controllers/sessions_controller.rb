@@ -26,7 +26,7 @@ class SessionsController < ApplicationController
       end
       response_for_successful_login
     else
-      flash.now[:error] = render_to_string :partial => 'login_failed'
+      flash.now[:error] = render_to_string_html_safe :partial => 'login_failed'
       render :action => 'new'
     end
   end

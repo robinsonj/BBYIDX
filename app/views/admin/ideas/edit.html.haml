@@ -5,7 +5,7 @@
       %h3= link_to "&laquo; Idea list", admin_ideas_path
       -# ------- STYLE NEEDED ------
       - if !current_object.duplicate_of_id
-        = link_to_ajax h('Add to Duplicates Bucket'), :url => admin_bucket_add_idea_path(current_object), :method => :put, :update => 'bucket'
+        = link_to_ajax 'Add to Duplicates Bucket', :url => admin_bucket_add_idea_path(current_object), :method => :put, :update => 'bucket'
       -# ------- /STYLE NEEDED ------
     .body
       .group
@@ -14,7 +14,7 @@
           .form-group.inline
             = f.label nil, "Submitted by"
             - if @idea.inventor
-              %strong= link_to h(@idea.inventor.name), edit_admin_user_path(@idea.inventor), :class => "icon user"
+              %strong= link_to @idea.inventor.name, edit_admin_user_path(@idea.inventor), :class => "icon user"
             - else
               %strong Unknown User
               .warning.info Because the user did not complete the login process, this idea will be permanently hidden.
@@ -28,7 +28,7 @@
             -if editor?
               .edit
                 %a{:href => '#', :onclick => 'editIdeaText(); return false'} edit
-            %h1=h @idea.title
+            %h1= @idea.title
             =user_formatted_text @idea.description
           #edit-idea-text{ :style => 'display: none' }
             .form-group.inline
@@ -59,7 +59,7 @@
             .form-group.inline
               .warning.info#duplicate
                 This idea is a duplicate of
-                = link_to h(@idea.duplicate_of.title), edit_admin_idea_path(@idea.duplicate_of)
+                = link_to @idea.duplicate_of.title, edit_admin_idea_path(@idea.duplicate_of)
                 %br/
                 = hidden_field_tag :clear_duplicate
                 - if editor?
@@ -77,7 +77,7 @@
               = f.label "Duplicate ideas"
               %ul{ :style => "padding-left:160px; margin-bottom:0;" }
                 -@idea.duplicates.each do |dup|
-                  %li= link_to h(dup.title), edit_admin_idea_path(dup)
+                  %li= link_to dup.title, edit_admin_idea_path(dup)
           -if @idea.inappropriate_flags > 0
             .form-group.inline
               .warning.info#inappropriate
@@ -110,7 +110,7 @@
                   %li{:id => "step_#{step.id}"}
                     - unless step.last?
                       = check_box :life_cycle_handler, "step_#{step.id}", check_box_onchange('updateLifeCycleDisplay()')
-                    =h step.name
+                    = step.name
             :javascript
               allLifeCycleIds = #{all_life_cycles.map{|lc| lc.id}.inspect}
           

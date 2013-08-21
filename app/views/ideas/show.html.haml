@@ -5,30 +5,32 @@
 %div
   #idea-1.main.panel.section.idea.hentry
     .header
-      %h2.entry-title= h @idea.title
+      %h2.entry-title= @idea.title
       - if @idea.editable_by?(current_user)
         %div
           = link_to('edit', '#', :onclick => 'editIdeaText(); return false')
           == (For the next #{time_ago_in_words(@idea.created_at + 15.minutes)})
       :javascript
-        function editIdeaText() {
-          $('idea-1').hide();
-          $('edit-idea-1').show();
-        }
-        function cancelEdit() {
-          $('idea-1').show();
-          $('edit-idea-1').hide();
-        }
+        jQuery(function($) {
+          window.editIdeaText = function() {
+            $('#idea-1').hide();
+            $('#edit-idea-1').show();
+          }
+          window.cancelEdit = function() {
+            $('#idea-1').show();
+            $('#edit-idea-1').hide();
+          }
+        })
       %h4.posted
         Posted
         %abbr.published.time-relative== #{time_ago_in_words(@idea.created_at)} ago
         by
         %span.vcard.author
-          = link_to h(@idea.inventor.name), profile_path(@idea.inventor), :class => @idea.inventor.admin? ? 'fn url admin' : 'fn url'
+          = link_to @idea.inventor.name, profile_path(@idea.inventor), :class => @idea.inventor.admin? ? 'fn url admin' : 'fn url'
         %br
         - if !@idea.current.nil? && @idea.current.id != Current::DEFAULT_CURRENT_ID
           Part of:
-          %strong= link_to h(@idea.current.title), current_path(@idea.current)
+          %strong= link_to @idea.current.title, current_path(@idea.current)
           %br
         Idea Status:
         %strong= @idea.status
@@ -53,7 +55,7 @@
                 = link_to "Post a Comment", "#post-comment"
             %li.subscription#subscription= render :partial => 'subscription'
             %li.tags
-              = @idea.tags.map { |tag| link_to h(tag.name), idea_search_path(:search => ['tag', tag.name]) }.join(', ')
+              = @idea.tags.map { |tag| link_to tag.name, idea_search_path(:search => ['tag', tag.name]) }.join(', ').html_safe
             %li.sharethis= render :partial => 'sharethis'
             %li.flag#xxx= render :partial => 'inappropriate/xxx', :locals => { :model => @idea, :dom_id => 'xxx' }
         %div.related-ideas
@@ -66,7 +68,7 @@
             %h3 Duplicates of this Idea
             %ul.entry-duplicates
               - @idea.duplicates.visible.each do |idea|
-                %li= link_to h(idea.title), idea_path(idea)
+                %li= link_to idea.title, idea_path(idea)
       #comments.group.slate
         - if @idea.comments.visible.empty? && !@idea.closed?
           %h3 No Comments Yet. Write One!

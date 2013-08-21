@@ -1,7 +1,7 @@
 %li.admin-comment{ :id => "admin_comment_#{admin_comment.id}" }
   %h4
     %span.vcard.author
-      = link_to h(admin_comment.author.name), profile_path(admin_comment.author), :class => "fn url admin"
+      = link_to admin_comment.author.name, profile_path(admin_comment.author), :class => "fn url admin"
     %span.posted
       Posted
       %abbr.published.time-relative== #{time_ago_in_words(admin_comment.created_at)} ago

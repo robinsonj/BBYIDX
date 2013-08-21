@@ -1,8 +1,8 @@
 - @sort, @sort_order = sort_params
 - if @sort == column
   .selected-sort
-    = link_to h(name), params.merge(:sort => column, :order => @sort_order ? 'asc' : 'desc')
+    = link_to name, params.merge(:sort => column, :order => @sort_order ? 'asc' : 'desc')
     = @sort_order ? '&#9660;' : '&#9650;'
 - else
   .sort
-    = link_to h(name), params.merge(:sort => column, :order => default_order)
+    = link_to name, params.merge(:sort => column, :order => default_order)

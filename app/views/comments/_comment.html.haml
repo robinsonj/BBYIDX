@@ -9,14 +9,14 @@
         .avatar
           = avatar_for comment.author, :size => 24
       /*------- /STYLE NEEDED ------*/
-      = link_to h(comment.author.name), profile_path(comment.author), :class => comment.author.admin? ? 'fn url admin' : 'fn url'
+      = link_to comment.author.name, profile_path(comment.author), :class => comment.author.admin? ? 'fn url admin' : 'fn url'
     .comment-content
       %h5.posted
         Posted
         %abbr.published.time-relative== #{time_ago_in_words(comment.created_at)} ago
         - if idea_link
           in response to
-          = link_to h(comment.idea.title), idea_path(comment.idea)
+          = link_to comment.idea.title, idea_path(comment.idea)
       %p= user_formatted_text comment.text
       %span{:id => "xxx_#{comment.id}"}
         = render :partial => 'inappropriate/xxx', :locals => { :model => comment, :dom_id => "xxx_#{comment.id}" }

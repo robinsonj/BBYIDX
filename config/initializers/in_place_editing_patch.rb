@@ -5,7 +5,7 @@ module InPlaceEditing
       define_method("set_#{object}_#{attribute}") do
         @item = object.to_s.camelize.constantize.find(params[:id])
         @item.update_attributes attribute => params[:value]
-        render :text => ERB::Util.h(@item.send(attribute).to_s)
+        render :text => @item.send(attribute).to_s
       end
     end
   end

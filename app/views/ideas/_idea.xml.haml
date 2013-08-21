@@ -7,21 +7,21 @@
   %inappropriate-flags= idea.inappropriate_flags
   %rating= idea.rating.round.to_i
   %vote-count= idea.vote_count
-  %title=h idea.title
-  %description=h user_formatted_text idea.description
+  %title= idea.title
+  %description= user_formatted_text idea.description
   -if current_user
     %user-has-voted= has_voted?(idea)
   -if idea.duplicate_of
     %duplicate-of
       %id= idea.duplicate_of.id
-      %title=h idea.duplicate_of.title
+      %title= idea.duplicate_of.title
   %inventor
     =render :partial => 'users/user', :locals => { :user => idea.inventor }
   %tags
     -idea.tags.each do |tag|
       %tag
         %id= tag.id
-        %name=h tag.name
+        %name= tag.name
   -if include_comments
     %comments= render :partial => 'comments/comment', :collection => idea.comments
   -else

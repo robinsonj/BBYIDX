@@ -6,10 +6,10 @@
   - next if @dup_drag && @dup_drag.id == idea.id
   .idea{ :id => "bucket_idea_#{idea.id}" }
     = link_to_ajax 'a', :url => admin_bucket_remove_idea_path(idea), :method => :delete, :update => 'bucket', :html => {:class => 'remove', :onclick => "event.cancelBubble = true; event.stopPropagation()"}
-    = h(idea.title)
+    = idea.title
     -if @dup_drop && @dup_drop.id == idea.id
       &#x2194;
-      = h(@dup_drag.title)
+      = @dup_drag.title
     -else
       = link_to "&raquo;", edit_admin_idea_path(idea), :html => { :onclick => "event.cancelBubble = true; event.stopPropagation()" }
   :javascript

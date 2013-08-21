@@ -1,14 +1,14 @@
 %div
   #idea.currents-page.panel.section.idea.hentry
     .header
-      %h2.entry-title=h "Current: #{@current.title}"
+      %h2.entry-title= "Current: #{@current.title}"
       %h4.posted
         Created
         %abbr.published.time-relative== #{time_ago_in_words(@current.created_at)} ago
         by
         %span.vcard.author
           - if !@current.inventor.nil?
-            = link_to h(@current.inventor.name), profile_path(@current.inventor), :class => @current.inventor.admin? ? 'fn url admin' : 'fn url'
+            = link_to @current.inventor.name, profile_path(@current.inventor), :class => @current.inventor.admin? ? 'fn url admin' : 'fn url'
         - unless @current.submission_deadline.nil?
           %br
           Submission Deadline:

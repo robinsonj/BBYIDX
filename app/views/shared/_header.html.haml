@@ -14,7 +14,7 @@
           %li.last= link_to 'Tags', tags_path, :class => 'tags'
     %ul.nav.user
       - if logged_in?
-        %li.first= link_to "#{h current_user.name}" , profile_url(current_user)
+        %li.first= link_to current_user.name , profile_url(current_user)
         %li= link_to 'Settings', edit_user_path
         %li= link_to "About", home_path('about')
         -if current_user.admin?

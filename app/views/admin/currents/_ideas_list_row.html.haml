@@ -2,11 +2,11 @@
 
 %tr{:class => 'data-row', :onclick => "document.location = '#{edit_admin_idea_path(idea.id)}'"}
   %td.no-overflow
-    .primary.excerpt= h(idea.title)
-    .secondary.excerpt= h(truncate(idea.description, :length => 140, :separator => ' '))
+    .primary.excerpt= idea.title
+    .secondary.excerpt= truncate(idea.description, :length => 140, :separator => ' ')
   %td
-    .excerpt= idea.admin_tags.empty? ? "&ndash;" : h(idea.admin_tag_names)
-    .secondary.excerpt= h(idea.tag_names)
+    .excerpt= idea.admin_tags.empty? ? "&ndash;".html_safe : idea.admin_tag_names
+    .secondary.excerpt= idea.tag_names
   %td= idea.rating.round.to_i
   %td= idea.comment_count
   %td= idea.status

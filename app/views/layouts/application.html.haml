@@ -1,7 +1,7 @@
 !!! Strict
 %html{ :xmlns => "http://www.w3.org/1999/xhtml" }
   %head{ :profile => "http://gmpg.org/xfn/1" }
-    %title== #{BBYIDX::LONG_SITE_NAME} | #{h(page_title || "Exchange your ideas, vote, and discuss. Let's make it better.")}
+    %title== #{BBYIDX::LONG_SITE_NAME} | #{page_title || "Exchange your ideas, vote, and discuss. Let's make it better."}
     -cache 'header' do
       %link{ :href => "/favicon.ico", :rel => "icon", :type => "image/vnd.microsoft.icon" }
       %meta{ :content => 'text/html; charset=UTF-8', "http-equiv" => "Content-Type" }/

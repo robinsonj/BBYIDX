@@ -6,9 +6,9 @@
         %select{:name => 'life_cycle_step', :class => "input-select"}
           %option{:value => ''}
           - all_life_cycles.each do |lc|
-            %option{:disabled => true}=h lc.name
+            %option{:disabled => true}= lc.name
             -lc.steps.each do |step|
-              %option{:value => step.id, :selected => step.id == params[:life_cycle_step].to_i}= '&nbsp;&nbsp;&nbsp;' + h(step.name)
+              %option{:value => step.id, :selected => step.id == params[:life_cycle_step].to_i}= '&nbsp;&nbsp;&nbsp;'.html_safe + step.name
       = text_field_tag :search, params[:search], :id => "search", :class => "input-custom long"
       
       - if current_model == Idea

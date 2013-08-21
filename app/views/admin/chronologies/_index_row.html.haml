@@ -1,25 +1,25 @@
 - action = index_row
 %tr.data-row{:onclick => "document.location = '#{edit_path_for(action)}'"}
-  %td.timestamp=h format_date(action.created_at, false)
+  %td.timestamp= format_date(action.created_at, false)
   %td{:class => action.class.to_s.underscore + '-label'}= action.class
   
   -if action.kind_of?(Idea)
-    %td=h truncate(action.inventor.name, :length => 20)
+    %td= truncate(action.inventor.name, :length => 20)
     %td
-      %b=h truncate(action.title, :length => 100, :separator => ' ')
-      .detail=h truncate(action.description, :length => 300, :separator => ' ')
+      %b= truncate(action.title, :length => 100, :separator => ' ')
+      .detail= truncate(action.description, :length => 300, :separator => ' ')
         
   -elsif action.kind_of?(Comment)
-    %td=h truncate(action.author.name, :length => 20)
+    %td= truncate(action.author.name, :length => 20)
     %td
       %b
         Re:
-        =h truncate(action.idea.title, :length => 100, :separator => ' ')
-      .detail=h truncate(action.text, :length => 300, :separator => ' ')
+        = truncate(action.idea.title, :length => 100, :separator => ' ')
+      .detail= truncate(action.text, :length => 300, :separator => ' ')
       
   -elsif action.kind_of?(Vote)
-    %td=h truncate(action.user.name, :length => 20)
+    %td= truncate(action.user.name, :length => 20)
     %td
       %b
         Re:
-        =h truncate(action.idea.title, :length => 100, :separator => ' ')
+        = truncate(action.idea.title, :length => 100, :separator => ' ')

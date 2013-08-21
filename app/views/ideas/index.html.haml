@@ -17,7 +17,7 @@
             = link_to 'All Time', idea_search_path(:search => 'top-voted')
           -# ------- /STYLE NEEDED ------
         -else
-          =h @query_title
+          = @query_title
       %ul.actions
         %li= link_to image_tag("icn/16-sq-map.png", :alt => "Map these ideas") + "Map these ideas", map_ideas_path(current_objects)
       = will_paginate current_objects

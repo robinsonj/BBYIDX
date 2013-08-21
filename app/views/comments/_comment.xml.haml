@@ -3,6 +3,6 @@
   %idea-id= comment.idea_id
   %created-at= comment.created_at
   %inappropriate-flags= comment.inappropriate_flags
-  %text=h comment.text
+  %text= comment.text
   %author
     =render :partial => 'users/user', :locals => { :user => comment.author }

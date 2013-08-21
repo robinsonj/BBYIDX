@@ -46,7 +46,7 @@ private
     ideas.each do |idea|
       zip = idea.inventor && idea.inventor.postal_code
       if zip
-        popup_content = render_to_string(
+        popup_content = render_to_string_html_safe(
           :partial => 'maps/idea_popup',
           :locals => { :idea => idea })
         

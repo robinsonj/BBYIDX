@@ -17,7 +17,7 @@ class CommentsController < ApplicationController
     
     response_for :create do |format|
       format.html do
-        flash[:info] = "Thanks! Your comment has been posted. <strong><a href='#comment_#{@comment.id}'>View comment &raquo;</a></strong>"
+        flash[:info] = render_to_string_html_safe(partial: 'created_flash')
         redirect_to idea_url(@idea)
       end
       format.xml do
@@ -36,7 +36,7 @@ class CommentsController < ApplicationController
     
     response_for :update do |format|
       format.html do
-        flash[:info] = "Thanks! Your comment has been updated. <strong><a href='#comment_#{@comment.id}'>View comment &raquo;</a></strong>"
+        flash[:info] = render_to_string_html_safe(partial: 'updated_flash')
         redirect_to idea_url(@idea)
       end
     end

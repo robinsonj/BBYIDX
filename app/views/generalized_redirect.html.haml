@@ -17,5 +17,7 @@
     %strong= message
 
 :javascript
-  // Timeout gives spinner a chance to load
-  setTimeout(function() { $('#redirect_form').submit() }, 150)
+  jQuery(function($) {
+    // Timeout gives spinner a chance to load
+    setTimeout(function() { $('#redirect_form').submit() }, 150)
+  })

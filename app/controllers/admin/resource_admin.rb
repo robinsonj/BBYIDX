@@ -42,7 +42,8 @@ module Admin
     end
 
     def sort_by(name, column, default_order = 'asc')
-      render_to_string :partial => 'admin/sort_by', :locals => { :name => name, :column => column, :default_order => default_order }
+      render_to_string_html_safe :partial => 'admin/sort_by', :locals => {
+        :name => name, :column => column, :default_order => default_order }
     end
   
     def sort_params

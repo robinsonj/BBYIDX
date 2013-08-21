@@ -1,4 +1,4 @@
 #idea-cloud{:style => "width: #{width}px; height: #{height}px"}
   - boxes.each do |box|
     .idea-in-the-cloud{:style => cloud_style(box)}
-      =link_to h(box.object.title), idea_path(box.object), :style => "text-decoration: none; color: #{box.color}"
+      =link_to box.object.title, idea_path(box.object), :style => "text-decoration: none; color: #{box.color}"

@@ -32,7 +32,7 @@
         - else
           %p You are not assigned as a moderator of flagged content.
         - current_user.life_cycle_steps.each do |step|
-          %h3== Ideas Requiring Action — #{h step.life_cycle.name} — #{h step.name}
+          %h3== Ideas Requiring Action — #{step.life_cycle.name} — #{step.name}
           - ideas = ideas_for_step(step)
           - if ideas.empty?
             %p No ideas require action.

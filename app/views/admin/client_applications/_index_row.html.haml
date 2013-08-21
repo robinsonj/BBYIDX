@@ -1,6 +1,6 @@
 - client_application = index_row
 %tr.data-row{:onclick => "document.location = '#{edit_admin_client_application_path(client_application.id)}'"}
-  %td=h client_application.name
-  %td=h client_application.url
+  %td= client_application.name
+  %td= client_application.url
   %td= client_application.created_at.strftime('%m/%d/%Y')
   %td= link_to 'OAuth Details', admin_client_application_path(client_application)

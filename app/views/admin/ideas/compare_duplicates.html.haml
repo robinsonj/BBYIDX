@@ -11,7 +11,7 @@
               -other_idea = @dup_ideas[(n+1) % @dup_ideas.size]
               
               %td{:style => "width:445px;"}
-                %h3=h idea.title
+                %h3= idea.title
                 %h4.posted
                   Posted
                   %abbr.published.time-relative
@@ -19,8 +19,8 @@
                     ago
                     by
                     %span.vcard.author
-                      = link_to h(idea.inventor.name), profile_path(idea.inventor), :class => idea.inventor.admin? ? 'fn url admin' : 'fn url'
-                %p=h idea.description
+                      = link_to idea.inventor.name, profile_path(idea.inventor), :class => idea.inventor.admin? ? 'fn url admin' : 'fn url'
+                %p= idea.description
                 -if other_idea.duplicate_ids.empty?
                   %b= link_to 'Make this one the parent', admin_link_duplicates_path(idea, other_idea), :method => :post
                   -unless idea.duplicate_ids.empty?

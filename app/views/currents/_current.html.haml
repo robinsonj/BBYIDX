@@ -8,14 +8,14 @@
       by
       %span.vcard.author
         - if current.inventor
-          = link_to h(current.inventor.name), profile_path(current.inventor), :class => current.inventor.admin? ? 'fn url admin' : 'fn url'
-    %h3.entry-title= link_to h(current.title), current_path(current)
+          = link_to current.inventor.name, profile_path(current.inventor), :class => current.inventor.admin? ? 'fn url admin' : 'fn url'
+    %h3.entry-title= link_to current.title, current_path(current)
     - current_ideas = search_ideas(:search => ['current', current.id])
     %div
-      %p= h current.description
+      %p= current.description
       %p= link_to 'Submit ideas!', params[:action] == "show" ? "#add_idea" : current_path(current, :anchor=>"add_idea")
       %ul.entry-meta
         %li.ideas
-          = h "#{current_ideas.total_entries}"
-          %span.points= h "idea#{current_ideas.total_entries == 1 ? '' : 's'}"
+          = current_ideas.total_entries
+          %span.points= "idea#{current_ideas.total_entries == 1 ? '' : 's'}"
           in this current

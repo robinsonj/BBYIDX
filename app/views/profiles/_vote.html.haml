@@ -1,5 +1,5 @@
 %li
-  = link_to h(truncate(vote.idea.title, :length => 50, :separator => ' ')), idea_path(vote.idea)
+  = link_to truncate(vote.idea.title, :length => 50, :separator => ' '), idea_path(vote.idea)
   %abbr.published.time-relative
     Posted
     = time_ago_in_words(vote.idea.created_at)

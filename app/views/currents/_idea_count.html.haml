@@ -1,7 +1,7 @@
 - idea_count = @current_ideas.total_entries
 
-= h "#{idea_count}"
-%span.points= h "idea#{idea_count == 1 ? '' : 's'}" 
+= idea_count
+%span.points= "idea#{idea_count == 1 ? '' : 's'}" 
 in this current.
 - unless current.closed_or_expired?
   = link_to 'Submit an idea!', params[:action] == "show" ? "#add_idea" : current_path(current, :anchor=>"add_idea")

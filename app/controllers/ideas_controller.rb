@@ -50,9 +50,9 @@ class IdeasController < ApplicationController
           first_post_attempt_at = 2.minutes.from_now
           
           if !current_facebook_user
-            flash[:info] = render_to_string(:partial => 'facebook_log_in_to_post_idea')
+            flash[:info] = render_to_string_html_safe(:partial => 'facebook_log_in_to_post_idea')
           elsif current_facebook_user.id != current_user.facebook_uid
-            flash[:info] = render_to_string(:partial => 'facebook_switch_account_to_post_idea')
+            flash[:info] = render_to_string_html_safe(:partial => 'facebook_switch_account_to_post_idea')
           else
             # We're logged in as the correct user on Facebook, so update_facebook_access_token in the
             # app controller has presumably brought our facebook access token up to date, and we

@@ -13,7 +13,7 @@
           .form-group.inline
             = f.label nil, "Submitted by"
             - if @current.inventor
-              %strong= link_to h(@current.inventor.name), edit_admin_user_path(@current.inventor), :class => "icon user"
+              %strong= link_to @current.inventor.name, edit_admin_user_path(@current.inventor), :class => "icon user"
             - else
               %strong Creator unknown.
           .form-group.inline
@@ -29,7 +29,7 @@
             -if editor?
               .edit
                 %a{:href => '#', :onclick => 'editCurrentText(); return false'} edit
-            %h1=h @current.title
+            %h1= @current.title
             =user_formatted_text @current.description
           #edit-current-text{ :style => 'display: none' }
             .form-group.inline

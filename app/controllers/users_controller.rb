@@ -35,7 +35,7 @@ class UsersController < ApplicationController
         @user.activate! if @user.linked_to_twitter? || @user.linked_to_facebook?
         promote_to_superuser if @first_user
         self.current_user = @user
-        flash[:info] = render_to_string(:partial => 'created')
+        flash[:info] = render_to_string_html_safe(:partial => 'created')
         redirect_back_or_default('/')
         deliver_account_state_notification @user
       else
@@ -62,7 +62,7 @@ class UsersController < ApplicationController
     raise "No such user" unless @user
     @user.reset_activation_code unless @user.activation_code
     UserMailer.delay.signup_notification(@user)
-    flash[:info] = render_to_string(:partial => 'created')
+    flash[:info] = render_to_string_html_safe(:partial => 'created')
     redirect_back_or_default('/')
   end
 

@@ -7,19 +7,19 @@
         ago
       by
       %span.vcard.author
-        = link_to h(idea.inventor.name), profile_path(idea.inventor), :class => idea.inventor.admin? ? 'fn url admin' : 'fn url'
-    %h3.entry-title= link_to h(idea.title), idea_path(idea)
+        = link_to idea.inventor.name, profile_path(idea.inventor), :class => idea.inventor.admin? ? 'fn url admin' : 'fn url'
+    %h3.entry-title= link_to idea.title, idea_path(idea)
     %span{:id => "vote_#{idea.id}"}= render :partial => 'votes/vote', :locals => { :idea => idea, :dom_id => "vote_#{idea.id}" }
     .entry-content
-      %p= h idea.description_excerpt
+      %p= idea.description_excerpt
     %ul.entry-meta
       %li.comments
         = link_to "Comments #{"(#{idea.comment_count})" if idea.comment_count > 0}", idea_path(idea, :anchor => 'comments', :title_in_url => false)
       %li.tags
         - idea.tags.each_with_index do |tag, ctr|
           - unless ctr == idea.tags.length - 1
-            == #{link_to h(tag.name), idea_search_path(:search => ['tag', tag.name])},
+            == #{link_to tag.name, idea_search_path(:search => ['tag', tag.name])},
           -else
-            == #{link_to h(tag.name), idea_search_path(:search => ['tag', tag.name])}
+            == #{link_to tag.name, idea_search_path(:search => ['tag', tag.name])}
     %span{:id => "xxx_#{idea.id}"}
       = render :partial => 'inappropriate/xxx', :locals => { :model => idea, :dom_id => "xxx_#{idea.id}" }

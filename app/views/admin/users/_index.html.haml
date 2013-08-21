@@ -12,14 +12,14 @@
     %th= sort_by 'Created', 'created_at', 'desc'
   - current_objects.each do |user|
     %tr.data-row{:onclick => "document.location = '#{edit_admin_user_path(user.id)}'"}
-      %td= h(user.name)
-      %td= h(user.email)
+      %td= user.name
+      %td= user.email
       %td
         - if user.zip_code?
-          = h(user.zip_code)
+          = user.zip_code
         - else
           &nbsp;
-      %td= h(user.state)
+      %td= user.state
       %td
         -if user.admin?
           Administrator

@@ -4,5 +4,5 @@
   .avatar
     = avatar_for contributor, :size => 18
   /*------- /STYLE NEEDED ------*/
-  = link_to h(contributor.name), profile_path(contributor)
+  = link_to contributor.name, profile_path(contributor)
   %em== #{(contributor.send(points_method) || 0).round} points

@@ -1,7 +1,7 @@
 %ul.vote
   %li.vote-count
-    = h "#{idea.vote_count}"
-    %span.points= h "vote#{idea.vote_count == 1 ? '' : 's'}" 
+    = "#{idea.vote_count}"
+    %span.points= "vote#{idea.vote_count == 1 ? '' : 's'}" 
   %li.vote-for-it
     - if has_voted?(idea)
       -# This doesn't get evaluated to TRUE in an ajax update.

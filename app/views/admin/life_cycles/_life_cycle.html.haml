@@ -13,7 +13,7 @@
           %option{:disabled => true}
           - reassign_lc.steps.each do |reassign_step|
             %option{:value => reassign_step.id, :disabled => reassign_lc == life_cycle}
-              =h reassign_lc.name + ": " + reassign_step.name
+              = reassign_lc.name + ": " + reassign_step.name
       = submit_tag 'Delete Life Cycle', :confirm => "Are you sure you want to delete the entire \"#{life_cycle.name}\" life cycle? You cannot undo this."
       %a{:href => '#', :onclick => "cancelDeleteLifeCycle(#{life_cycle.id}); return false"} Cancel
 
