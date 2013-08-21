@@ -32,9 +32,9 @@ You will first need to edit the following files to get the app running in your e
 ## Local Installation
 
 1. `bundle install`
-2. `rake db:migrate`
-3. `rake db:seed`
-4. `script/server`
+2. `bundle exec rake db:migrate`
+3. `bundle exec rake db:seed`
+4. `rails s`
 
 The first time you visit the app, it will prompt you to create an admin user.
 
