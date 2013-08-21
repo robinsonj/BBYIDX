@@ -8,6 +8,12 @@ module ApplicationHelper
   
   def visual_effect(*args)  #! stopgap for 3.2 port
     puts '---------------------> visual_effect needs to be replaced for 3.2'
+    ''
+  end
+  
+  def observe_form(*args)  #! stopgap for 3.2 port
+    puts '---------------------> observe_form needs to be replaced for 3.2'
+    ''
   end
   
   def link_to_ajax(text, opts)
@@ -22,14 +28,16 @@ module ApplicationHelper
     opts[:html]['data-update'] = opts.delete(:update)
     form_for(record, opts, &block)
   end
+
+  def form_tag_ajax(opts, &block)
+    opts.reverse_merge! remote: true, 'data-type' => 'html', html: {}
+    opts[:html]['data-update'] = opts.delete(:update)
+    form_tag(opts, &block)
+  end
   
   
   def logged_in?
     !current_user.nil?
-  end
-  
-  def render_to_string_html_safe(*args)
-    render_to_string(*args).html_safe
   end
   
   def user_formatted_text(text)

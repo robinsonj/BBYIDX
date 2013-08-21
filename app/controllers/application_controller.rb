@@ -94,6 +94,11 @@ protected
     request.format == :xml
   end
   
+  def render_to_string_html_safe(*args)
+    render_to_string(*args).html_safe
+  end
+  helper_method :render_to_string_html_safe
+  
   def update_facebook_access_token
     if BBYIDX::FACEBOOK_ENABLED
       # Facebook regularly expires its access tokens. We have client-side JS that checks for a new access token,
