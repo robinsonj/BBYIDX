@@ -13,12 +13,13 @@ STAGING_HOST = 'bbyidx.com'
 EMAIL_FROM_ADDRESS = "#{LONG_SITE_NAME} <noreply@#{PRODUCTION_HOST}>"
 
 # Specify a long random string for SESSION_SECRET to secure user sessions
-SESSION_SECRET = nil
+SESSION_SECRET = "test"
 SESSION_KEY = "_#{SHORT_SITE_NAME.downcase}_session"
 
 # Configure Twitter in twitter.yml, then set "TWITTER_ENABLED = true" to enable Twitter integration.
 # You can also set TWITTER_API_KEY and TWITTER_API_SECRET as environment variables.
-TWITTER_ENABLED = ENV['TWITTER_API_KEY'] || ENV['RAILS_ENV'] == 'test'
+#TWITTER_ENABLED = ENV['TWITTER_API_KEY'] || ENV['RAILS_ENV'] == 'test'
+TWIRRER_ENABLED = false
 
 # Configure Facebook in facebooker.yml, then set "FACEBOOK_ENABLED = true" to enable Twitter integration.
 # You can also set FACEBOOK_APP_ID, FACEBOOK_API_KEY and FACEBOOK_APP_SECRET as environment variables.
