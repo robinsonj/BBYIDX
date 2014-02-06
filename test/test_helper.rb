@@ -2,6 +2,12 @@ ENV["RAILS_ENV"] = "test"
 ENV['TZ'] = 'US/Central'
 require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
 require 'test_help'
+
+if ENV['RAILS_ENV'] == 'test'
+  require 'simplecov'
+  SimpleCov.start 'rails'
+end
+
 gem 'thoughtbot-shoulda'
 require 'lazy'
 require 'shoulda'
@@ -51,7 +57,7 @@ class ActiveSupport::TestCase
   # don't care one way or the other, switching from MyISAM to InnoDB tables
   # is recommended.
   #
-  # The only drawback to using transactional fixtures is when you actually 
+  # The only drawback to using transactional fixtures is when you actually
   # need to test transactions.  Since your test is bracketed by a transaction,
   # any transactions started in your code will be automatically rolled back.
   self.use_transactional_fixtures = true
@@ -69,7 +75,7 @@ class ActiveSupport::TestCase
     assert obj.errors.on(field), "Expected error when #{model}.#{field} = #{value.inspect}"
     assert !obj.valid?
   end
-  
+
   def assert_login_required(user, expected_flash_info = nil)
     yield
     assert session[:return_to], 'Action should require login, but does not'
@@ -78,12 +84,12 @@ class ActiveSupport::TestCase
     login_as user
     yield
   end
-  
+
   def assert_admin_required(expected_flash_info = nil, &action)
     assert_login_required @aaron, nil, &action                       # This leaves us logged in as aaron, and...
     assert_login_required @admin_user, expected_flash_info, &action  # ...that should fail this time around.
   end
-  
+
   def assert_equal_unordered(expected, actual, message = nil)
     missing = expected - actual
     unexpected = actual - expected
@@ -91,14 +97,14 @@ class ActiveSupport::TestCase
       fail "#{message || 'Unordered array comparison failed'}\nMissing: #{missing.inspect}\nUnexpected: #{unexpected.inspect}"
     end
   end
-    
+
   def assert_email_sent(recipient, *body_pats)
     recipient_list = if recipient.kind_of?(User)
       [recipient.email]
     else
       recipient.to_a
     end
-    
+
     @deliveries.each_with_index do |sent, i|
       if recipient_list == sent.to
         body_pats.each do |body_pat|
@@ -110,25 +116,25 @@ class ActiveSupport::TestCase
     end
     fail "Expected a message to be delivered to #{recipient_list}, but none found. Deliveries: #{@deliveries.map { |d| d.to }.inspect}"
   end
-  
+
   def get_xml(action, params = {})
     @request.env['HTTP_ACCEPT'] = 'application/xml'
     get action, params
     Nokogiri::XML(@response.body.to_s)
   end
-  
+
   def post_xml(action, params = {})
     @request.env['HTTP_ACCEPT'] = 'application/xml'
     post action, params
     Nokogiri::XML(@response.body.to_s)
   end
-  
+
   def oauth_params(user, app, params = {})
     req_token = app.create_request_token
     req_token.authorize!(user)
     req_token.provided_oauth_verifier = req_token.verifier
     acc_token = req_token.exchange!
-    
+
     @@oauth_fake_nonce ||= 0
     params[:oauth_nonce] = (@@oauth_fake_nonce += 1)
     params[:oauth_timestamp] = Time.now.to_i
@@ -137,14 +143,14 @@ class ActiveSupport::TestCase
     params[:oauth_consumer_key] = @phone_app.key
     params[:oauth_token] = acc_token.token
     params[:oauth_version] = "1.0a"
-    
+
     params
   end
-  
+
   def assert_xml_equal(xml, path, expected)
     assert_equal expected.to_s, xml.xpath(path).inner_html, "Looking for path #{path} in XML:\n#{xml}"
   end
-  
+
   def match_xml_to_array(xml, path, array, &block)
     array = array.dup
     xml.xpath(path).each do |item_xml|
@@ -152,7 +158,7 @@ class ActiveSupport::TestCase
     end
     assert_equal [], array, 'Items from expected array have no corresponding XML'
   end
-  
+
   include AuthenticatedTestHelper
 end
 
@@ -160,17 +166,17 @@ class ApplicationController
   def test_login_as(user)
     @current_user = user
   end
-  
+
   def test_oauth_login_as(user)
     @current_user = user
     @skip_oauth = true
   end
-  
+
   alias_method :oauth_required_without_test_hook, :oauth_required
   def oauth_required
     oauth_required_without_test_hook unless @skip_oauth
   end
-  
+
   def rescue_action(e)
     raise e
   end
@@ -184,7 +190,7 @@ else
   LAZY_FIXTURE_PATCH_APPLIED = true
   class Fixture
     alias_method :find_concrete, :find
-  
+
     def find
       Lazy::promise { find_concrete }
     end
