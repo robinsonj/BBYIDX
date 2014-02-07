@@ -80,6 +80,7 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    make_resourceful (1.0.1)
     mash (0.1.1)
     metaclass (0.0.2)
     mime-types (1.25.1)
@@ -181,6 +182,7 @@ DEPENDENCIES
   jquery-rails
   json
   lazy (= 0.9.6)
+  make_resourceful
   mash
   mocha
   mogli

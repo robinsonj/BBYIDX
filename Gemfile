@@ -26,6 +26,7 @@ gem "color", '1.4.1'
 gem 'acts_as_list'
 gem 'aasm'
 gem 'delayed_job_active_record'
+gem 'make_resourceful'
 
 # Code coverage tests.
 gem 'simplecov'
