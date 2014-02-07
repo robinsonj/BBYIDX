@@ -146,7 +146,7 @@ GEM
     uglifier (2.4.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
-    will_paginate (2.3.16)
+    will_paginate (3.0.5)
 
 PLATFORMS
   ruby
@@ -179,4 +179,4 @@ DEPENDENCIES
   simplecov-rcov
   thoughtbot-shoulda
   uglifier (>= 1.0.3)
-  will_paginate (~> 2.3.11)
+  will_paginate

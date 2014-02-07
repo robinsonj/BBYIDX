@@ -4,21 +4,29 @@ gem 'rails', '~> 3.2.16'
 gem 'rake'
 
 gem 'json'
-gem 'haml', '3.0.22'
-gem 'will_paginate', '~> 2.3.11'
-gem "color", '1.4.1'
+gem 'will_paginate'
 gem 'mash'
 gem 'httparty'
 gem 'ruby-hmac'
 gem 'facebooker2'
 gem 'mogli'
+gem 'fastercsv'
+gem 'highline'
+
+# Potential rails 2 -> 3 version conflicts
+gem 'haml', '3.0.22'
 gem 'oauth', '0.4.3'
 gem 'oauth-plugin', '0.3.14'
 gem "calendar_date_select", '1.16.1'
 gem "lazy", '0.9.6'
-gem 'fastercsv'
-gem 'highline'
+gem "color", '1.4.1'
 
+# Rails 2 plugins to gems
+gem 'acts_as_list'
+gem 'aasm' # acts_as_state_machine
+
+
+# Code coverage tests.
 gem 'simplecov'
 gem 'simplecov-rcov'
 
