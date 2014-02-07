@@ -14,7 +14,8 @@ gem 'fastercsv'
 gem 'highline'
 
 # Potential rails 2 -> 3 version conflicts
-gem 'haml', '3.0.22'
+gem 'haml'
+gem 'haml-rails'
 gem 'oauth', '0.4.3'
 gem 'oauth-plugin', '0.3.14'
 gem "calendar_date_select", '1.16.1'
@@ -23,8 +24,8 @@ gem "color", '1.4.1'
 
 # Rails 2 plugins to gems
 gem 'acts_as_list'
-gem 'aasm' # acts_as_state_machine
-
+gem 'aasm'
+gem 'delayed_job_active_record'
 
 # Code coverage tests.
 gem 'simplecov'

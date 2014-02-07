@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    aasm (3.1.0)
     actionmailer (3.2.16)
       actionpack (= 3.2.16)
       mail (~> 2.5.4)
@@ -28,6 +29,8 @@ GEM
     activesupport (3.2.16)
       i18n (~> 0.6, >= 0.6.4)
       multi_json (~> 1.0)
+    acts_as_list (0.3.0)
+      activerecord (>= 3.0)
     arel (3.0.3)
     builder (3.0.4)
     calendar_date_select (1.16.1)
@@ -39,6 +42,11 @@ GEM
       execjs
     coffee-script-source (1.7.0)
     color (1.4.1)
+    delayed_job (4.0.0)
+      activesupport (>= 3.0, < 4.1)
+    delayed_job_active_record (4.0.0)
+      activerecord (>= 3.0, < 4.1)
+      delayed_job (>= 3.0, < 4.1)
     docile (1.1.3)
     erubis (2.7.0)
     execjs (2.0.2)
@@ -46,7 +54,13 @@ GEM
       mogli (>= 0.0.33)
       ruby-hmac
     fastercsv (1.5.5)
-    haml (3.0.22)
+    haml (4.0.5)
+      tilt
+    haml-rails (0.4)
+      actionpack (>= 3.1, < 4.1)
+      activesupport (>= 3.1, < 4.1)
+      haml (>= 3.1, < 4.1)
+      railties (>= 3.1, < 4.1)
     hashie (2.0.5)
     highline (1.6.20)
     hike (1.2.3)
@@ -152,12 +166,16 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  aasm
+  acts_as_list
   calendar_date_select (= 1.16.1)
   coffee-rails (~> 3.2.1)
   color (= 1.4.1)
+  delayed_job_active_record
   facebooker2
   fastercsv
-  haml (= 3.0.22)
+  haml
+  haml-rails
   highline
   httparty
   jquery-rails
