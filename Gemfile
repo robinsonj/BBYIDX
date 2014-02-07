@@ -27,6 +27,10 @@ gem 'acts_as_list'
 gem 'aasm'
 gem 'delayed_job_active_record'
 gem 'make_resourceful'
+gem 'rakismet'
+
+# Homegrown gem. Hasn't been updated.
+gem 'nested_scenarios', :path => './nested_scenarios'
 
 # Code coverage tests.
 gem 'simplecov'
