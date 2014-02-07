@@ -17,6 +17,7 @@
 
 # Ignore OS X folder config
 .DS_Store
+.DS_STORE
 
 # Extra
 *.tmproj
