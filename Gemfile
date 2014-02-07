@@ -19,7 +19,7 @@ gem 'haml-rails'
 gem 'oauth', '0.4.3'
 gem 'oauth-plugin', '0.3.14'
 gem "calendar_date_select", '1.16.1'
-gem "lazy", '0.9.6'
+#gem "lazy", '0.9.6'  # Outdated?
 gem "color", '1.4.1'
 
 # Rails 2 plugins to gems
@@ -30,7 +30,7 @@ gem 'make_resourceful'
 gem 'rakismet'
 
 # Homegrown gem. Hasn't been updated.
-gem 'nested_scenarios', :path => './nested_scenarios'
+#gem 'nested_scenarios', :path => './nested_scenarios'
 
 # Code coverage tests.
 gem 'simplecov'
