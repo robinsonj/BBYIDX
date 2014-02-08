@@ -1,7 +1,7 @@
 ENV["RAILS_ENV"] = "test"
 ENV['TZ'] = 'US/Central'
 require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
-require 'test_help'
+# require 'test_help' # Will need to be "require 'rails/test_help'" in Rails 3.
 
 if ENV['RAILS_ENV'] == 'test'
   require 'simplecov'
