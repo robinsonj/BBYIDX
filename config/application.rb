@@ -81,6 +81,6 @@ module BBYIDX
           "    You must specify a value for SESSION_SECRET in config/environment_custom.rb in order to start the server.\n" +
           "    The value should be a string of at least 30 random characeters.\n" +
           "    Here is a suggested value, generated at random just for you:\n\n" +
-          "      SESSION_SECRET = '#{ActiveSupport::SecureRandom.base64(60)}'\n\n"
+          "      SESSION_SECRET = '#{SecureRandom.base64(60)}'\n\n"
   end
 end
