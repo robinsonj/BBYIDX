@@ -53,7 +53,7 @@ module BBYIDX
       # is doing a custom deployment of the project.
       SESSION_SECRET = "bbyidx-demo-#{rand()}-#{rand()}-#{rand()}-#{rand()}-#{rand()}"
     end
-    config.action_controller.session = {
+    config.session = {
       :key    => SESSION_KEY,
       :secret => SESSION_SECRET
     }
