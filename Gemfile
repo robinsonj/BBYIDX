@@ -28,6 +28,7 @@ gem 'aasm'
 gem 'delayed_job_active_record'
 gem 'make_resourceful'
 gem 'rakismet'
+gem 'in_place_editing'
 
 # Homegrown gem. Hasn't been updated.
 #gem 'nested_scenarios', :path => './nested_scenarios'
