@@ -22,5 +22,5 @@
     %td Duplicate Idea
   - else
     %td{:onclick => "event.cancelBubble = true; event.stopPropagation()"}
-      = link_to_remote 'Add to Bucket', :url => admin_bucket_add_idea_path(idea), :method => :put, :update => 'bucket'
+      = link_to 'Add to Bucket', :url => admin_bucket_add_idea_path(idea), :method => :put, :update => 'bucket', :remote => true
   %td= idea.created_at.strftime('%m/%d/%y')

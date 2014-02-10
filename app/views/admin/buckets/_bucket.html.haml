@@ -5,7 +5,7 @@
 - bucket_contents.each do |idea|
   - next if @dup_drag && @dup_drag.id == idea.id
   .idea{ :id => "bucket_idea_#{idea.id}" }
-    = link_to_remote 'a', :url => admin_bucket_remove_idea_path(idea), :method => :delete, :update => 'bucket', :html => {:class => 'remove', :onclick => "event.cancelBubble = true; event.stopPropagation()"}
+    = link_to 'a', :url => admin_bucket_remove_idea_path(idea), :method => :delete, :update => 'bucket', :remote => true, :html => {:class => 'remove', :onclick => "event.cancelBubble = true; event.stopPropagation()"}
     = h(idea.title)
     -if @dup_drop && @dup_drop.id == idea.id
       &#x2194;
@@ -15,14 +15,14 @@
   :javascript
     var div_id = 'bucket_idea_#{idea.id}'
     $(div_id).idea_id = '#{idea.id}'
-    
+
     // If the bucket is updated via AJAX, then Droppables will already contain a reference to a now-defunct element
     // with the same ID. We discard it so that the Droppables don't grow quadratically and slow everything down to a crawl.
-    
+
     Droppables.drops = Droppables.drops.reject(function(d) { return d.element.id == div_id });
-    
+
     // Now make the new idea element draggable, and make it accept other ideas dropped onto it.
-    
+
     new Draggable(div_id, { revert: true })
     Droppables.add(div_id, {
       hoverclass: 'accept-drag',

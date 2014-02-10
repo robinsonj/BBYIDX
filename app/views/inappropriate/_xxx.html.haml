@@ -1,4 +1,4 @@
 - if flagged_as_inappropriate?(model)
   %span.flagged{ :title => "Flagged as inappropriate" } Flagged as inappropriate
 - else
-  = link_to_remote 'Flag as inappropriate', {:url => flag_inappropriate_path(model.class.name.underscore, model), :update => dom_id, :complete => visual_effect(:highlight, dom_id, :duration => 0.8)}, :class => 'flag', :title => "Flag as inappropriate"
+  = link_to 'Flag as inappropriate', {:url => flag_inappropriate_path(model.class.name.underscore, model), :update => dom_id, :complete => visual_effect(:highlight, dom_id, :duration => 0.8)}, :class => 'flag', :title => "Flag as inappropriate", :remote => true

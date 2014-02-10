@@ -5,7 +5,7 @@
       %h3= link_to "&laquo; Idea list", admin_ideas_path
       -# ------- STYLE NEEDED ------
       - if !current_object.duplicate_of_id
-        = link_to_remote h('Add to Duplicates Bucket'), :url => admin_bucket_add_idea_path(current_object), :method => :put, :update => 'bucket'
+        = link_to h('Add to Duplicates Bucket'), :url => admin_bucket_add_idea_path(current_object), :method => :put, :update => 'bucket', :remote => true
       -# ------- /STYLE NEEDED ------
     .body
       .group
@@ -103,7 +103,7 @@
           .form-group.inline
             %label Life Cycle
             = f.hidden_field :life_cycle_step_id
-            = collection_select :life_cycle_handler, :life_cycle, all_life_cycles, :id, :name, {:include_blank => true}, :onchange => 'updateLifeCycleDisplay()'  
+            = collection_select :life_cycle_handler, :life_cycle, all_life_cycles, :id, :name, {:include_blank => true}, :onchange => 'updateLifeCycleDisplay()'
             - all_life_cycles.each do |life_cycle|
               %ol.life-cycle{:id => "life_cycle_#{life_cycle.id}", :style => 'display: none'}
                 - life_cycle.steps.each do |step|
@@ -113,24 +113,24 @@
                     =h step.name
             :javascript
               allLifeCycleIds = #{all_life_cycles.map{|lc| lc.id}.inspect}
-          
+
               // Show/hide the step checklists and update all of the checkboxes based on
               // the selected life cycle and the first step to be unchecked.
-          
+
               function updateLifeCycleDisplay() {
                 var selectedLifeCycle = $('life_cycle_handler_life_cycle').value
                 allLifeCycleIds.each(function(id) {
                   var stepList = $('life_cycle_' + id)
                   if(id == selectedLifeCycle) {
                     stepList.style.display = 'block'
-                
+
                     var currentFound = false
                     stepList.childElements().each(function(step) {
                       var checkbox = step.down('input[type=checkbox]')
                       if(checkbox) {
-                  
+
                         // Figure out which step is the current one, updating the CSS classes as we go
-                  
+
                         var enabled, checked
                         if(currentFound) {
                           step.className = 'future-step'
@@ -147,9 +147,9 @@
                           step.className = 'past-step'
                           enabled = checked = true
                         }
-                  
+
                         // Update checkbox
-                  
+
                         checkbox.checked = checked
                         if(enabled)
                           checkbox.enable()
@@ -162,14 +162,14 @@
                   }
                 })
               }
-              
+
               updateLifeCycleDisplay()
           - if @idea.admin_comments.any?
             .form-group.inline
               %label Admin Comments
               %ol#admin-comments
                 = render :partial => 'admin_comment', :collection => @idea.admin_comments
-                  
+
           .form-group.inline.comment-input
             %label New Admin Comment
             - fields_for :admin_comment do |acf|
