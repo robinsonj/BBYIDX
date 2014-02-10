@@ -15,15 +15,16 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: BBYIDX_development
+  database: bbyidx_dev
   pool: 5
-  username: BBYIDX
-  password:
+  username: bbyidx
+  password: bbyidx
+  template: template0
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
   # domain sockets, so uncomment these lines.
-  #host: localhost
+  host: localhost
   #port: 5432
 
   # Schema search path. The server defaults to $user,public
@@ -41,15 +42,17 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: BBYIDX_test
+  database: bbyidx_test
   pool: 5
-  username: BBYIDX
-  password:
+  username: bbyidx
+  password: bbyidx
+  template: template0
 
 production:
   adapter: postgresql
   encoding: unicode
-  database: BBYIDX_production
+  database: bbyidx_production
   pool: 5
-  username: BBYIDX
+  username: bbyidx
   password:
+  template: template0
