@@ -4,6 +4,15 @@ require 'rails/all'
 
 Bundler.require(:default, Rails.env) if defined?(Bundler)
 
+# Settings for rails-authorization-plugin
+# http://github.com/DocSavage/rails-authorization-plugin/tree/master
+# AUTHORIZATION_MIXIN = "object roles"
+# LOGIN_REQUIRED_REDIRECTION    = { :controller => '/sessions', :action => 'new' }
+# PERMISSION_DENIED_REDIRECTION = { :controller => '/sessions', :action => 'new' }
+# STORE_LOCATION_METHOD = :store_location
+
+require File.dirname(__FILE__) + '/environment_custom.rb'
+
 module BBYIDX
   class Application < Rails::Application
     config.autoload_paths += [config.root.join('lib')]
