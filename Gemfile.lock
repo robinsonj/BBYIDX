@@ -32,6 +32,7 @@ GEM
     acts_as_list (0.3.0)
       activerecord (>= 3.0)
     arel (3.0.3)
+    authorization (1.0.12)
     builder (3.0.4)
     calendar_date_select (1.16.1)
     coffee-rails (3.2.2)
@@ -170,6 +171,7 @@ PLATFORMS
 DEPENDENCIES
   aasm
   acts_as_list
+  authorization
   calendar_date_select (= 1.16.1)
   coffee-rails (~> 3.2.1)
   color (= 1.4.1)
