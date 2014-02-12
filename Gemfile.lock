@@ -1,3 +1,8 @@
+PATH
+  remote: ./nested_scenarios
+  specs:
+    nested_scenarios (0.2.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -189,6 +194,7 @@ DEPENDENCIES
   mash
   mocha
   mogli
+  nested_scenarios!
   nokogiri
   oauth (= 0.4.3)
   oauth-plugin (= 0.3.14)

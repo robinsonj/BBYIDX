@@ -32,7 +32,7 @@ gem 'in_place_editing'
 gem 'authorization'
 
 # Homegrown gem. Hasn't been updated.
-#gem 'nested_scenarios', :path => './nested_scenarios'
+gem 'nested_scenarios', :path => './nested_scenarios'
 
 # Code coverage tests.
 gem 'simplecov'
