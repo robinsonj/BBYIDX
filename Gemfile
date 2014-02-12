@@ -30,9 +30,12 @@ gem 'make_resourceful'
 gem 'rakismet'
 gem 'in_place_editing'
 gem 'authorization'
+gem 'devise' # alternative to restful_authentication
+gem 'devise-encryptable'
 
 # Homegrown gem. Hasn't been updated.
 gem 'nested_scenarios', :path => './nested_scenarios'
+#gem 'restful_authentication', :path => './restful_authentication'
 
 # Code coverage tests.
 gem 'simplecov'
