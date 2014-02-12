@@ -87,7 +87,8 @@ module TsearchMixin
           end
 
           class_eval do
-            @@postgresql_version = connection.instance_variable_get('@postgresql_version')
+            # @@postgresql_version = ActiveRecord::Base.connection.instance_variable_get('@postgresql_version')
+            # @@postgresql_version = ActiveRecord::ConnectionAdapters::PostgreSQLAdapter('@postgresql_version')
             def self.postgresql_version
               @@postgresql_version
             end
@@ -393,7 +394,7 @@ module TsearchMixin
         end
 
         def is_postgresql_83?
-          self.postgresql_version >= 80300
+          #self.postgresql_version >= 80300
         end
       end
 
