@@ -10,7 +10,6 @@ gem 'httparty'
 gem 'ruby-hmac'
 gem 'facebooker2'
 gem 'mogli'
-gem 'fastercsv'
 gem 'highline'
 
 # Potential rails 2 -> 3 version conflicts

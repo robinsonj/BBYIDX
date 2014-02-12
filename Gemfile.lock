@@ -69,7 +69,6 @@ GEM
     facebooker2 (0.0.17)
       mogli (>= 0.0.33)
       ruby-hmac
-    fastercsv (1.5.5)
     haml (4.0.5)
       tilt
     haml-rails (0.4)
@@ -199,7 +198,6 @@ DEPENDENCIES
   devise
   devise-encryptable
   facebooker2
-  fastercsv
   haml
   haml-rails
   highline
