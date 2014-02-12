@@ -34,7 +34,6 @@ gem 'devise-encryptable'
 
 # Homegrown gem. Hasn't been updated.
 gem 'nested_scenarios', :path => './nested_scenarios'
-#gem 'restful_authentication', :path => './restful_authentication'
 
 # Code coverage tests.
 gem 'simplecov'
