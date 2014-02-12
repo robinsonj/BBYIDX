@@ -1,28 +1,30 @@
-# This file is auto-generated from the current state of the database. Instead of editing this file, 
-# please use the migrations feature of Active Record to incrementally modify your database, and
-# then regenerate this schema definition.
+# encoding: UTF-8
+# This file is auto-generated from the current state of the database. Instead
+# of editing this file, please use the migrations feature of Active Record to
+# incrementally modify your database, and then regenerate this schema definition.
 #
-# Note that this schema.rb definition is the authoritative source for your database schema. If you need
-# to create the application database on another system, you should be using db:schema:load, not running
-# all the migrations from scratch. The latter is a flawed and unsustainable approach (the more migrations
+# Note that this schema.rb definition is the authoritative source for your
+# database schema. If you need to create the application database on another
+# system, you should be using db:schema:load, not running all the migrations
+# from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110309223551) do
+ActiveRecord::Schema.define(:version => 20140212192232) do
 
   create_table "admin_comments", :force => true do |t|
     t.integer  "idea_id"
     t.integer  "author_id"
     t.text     "text"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "admin_tags", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "client_applications", :force => true do |t|
@@ -33,8 +35,8 @@ ActiveRecord::Schema.define(:version => 20110309223551) do
     t.string   "key",          :limit => 20
     t.string   "secret",       :limit => 40
     t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
   end
 
   add_index "client_applications", ["key"], :name => "index_client_applications_on_key", :unique => true
@@ -43,8 +45,8 @@ ActiveRecord::Schema.define(:version => 20110309223551) do
     t.integer  "idea_id"
     t.integer  "author_id"
     t.text     "text"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                           :null => false
+    t.datetime "updated_at",                                           :null => false
     t.integer  "inappropriate_flags",               :default => 0
     t.boolean  "hidden",                            :default => false
     t.string   "ip",                  :limit => 64
@@ -61,8 +63,8 @@ ActiveRecord::Schema.define(:version => 20110309223551) do
     t.string   "title"
     t.text     "description"
     t.integer  "inventor_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
     t.text     "vectors"
     t.boolean  "closed",              :default => false
     t.boolean  "invitation_only",     :default => false
@@ -85,8 +87,8 @@ ActiveRecord::Schema.define(:version => 20110309223551) do
     t.datetime "locked_at"
     t.datetime "failed_at"
     t.text     "locked_by"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
   create_table "ideas", :force => true do |t|
@@ -94,8 +96,8 @@ ActiveRecord::Schema.define(:version => 20110309223551) do
     t.text     "description"
     t.decimal  "rating",                            :precision => 10, :scale => 2, :default => 0.0
     t.integer  "inventor_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                                                          :null => false
+    t.datetime "updated_at",                                                                          :null => false
     t.boolean  "flagged"
     t.boolean  "viewed",                                                           :default => false
     t.integer  "inappropriate_flags",                                              :default => 0
@@ -140,8 +142,8 @@ ActiveRecord::Schema.define(:version => 20110309223551) do
     t.integer  "life_cycle_id"
     t.integer  "position"
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "life_cycle_steps_admins", :id => false, :force => true do |t|
@@ -151,15 +153,15 @@ ActiveRecord::Schema.define(:version => 20110309223551) do
 
   create_table "life_cycles", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "oauth_nonces", :force => true do |t|
     t.string   "nonce"
     t.integer  "timestamp"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "oauth_nonces", ["nonce", "timestamp"], :name => "index_oauth_nonces_on_nonce_and_timestamp", :unique => true
@@ -174,8 +176,8 @@ ActiveRecord::Schema.define(:version => 20110309223551) do
     t.string   "verifier",              :limit => 20
     t.datetime "authorized_at"
     t.datetime "invalidated_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
   end
 
   add_index "oauth_tokens", ["token"], :name => "index_oauth_tokens_on_token", :unique => true
@@ -192,15 +194,15 @@ ActiveRecord::Schema.define(:version => 20110309223551) do
     t.string   "name",              :limit => 40
     t.string   "authorizable_type", :limit => 40
     t.integer  "authorizable_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
   end
 
   create_table "roles_users", :id => false, :force => true do |t|
     t.integer  "user_id"
     t.integer  "role_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.integer  "id"
   end
 
@@ -212,19 +214,19 @@ ActiveRecord::Schema.define(:version => 20110309223551) do
 
   create_table "users", :force => true do |t|
     t.string   "name"
-    t.string   "email"
-    t.string   "crypted_password",           :limit => 40
-    t.string   "salt",                       :limit => 40
+    t.string   "email",                      :limit => 128, :default => "",        :null => false
+    t.string   "encrypted_password",         :limit => 128, :default => "",        :null => false
+    t.string   "password_salt",                             :default => "",        :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "remember_token"
-    t.datetime "remember_token_expires_at"
-    t.string   "activation_code",            :limit => 40
-    t.datetime "activated_at"
-    t.string   "state",                                    :default => "passive"
+    t.datetime "remember_created_at"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.string   "state",                                     :default => "passive"
     t.datetime "deleted_at"
     t.string   "zip_code"
-    t.float    "contribution_points",                      :default => 0.0
+    t.float    "contribution_points",                       :default => 0.0
     t.datetime "decayed_at"
     t.boolean  "moderator"
     t.integer  "postal_code_id"
@@ -233,12 +235,19 @@ ActiveRecord::Schema.define(:version => 20110309223551) do
     t.string   "twitter_token"
     t.string   "twitter_secret"
     t.string   "facebook_uid"
-    t.boolean  "notify_on_comments",                       :default => false,     :null => false
-    t.boolean  "notify_on_state",                          :default => false,     :null => false
+    t.boolean  "notify_on_comments",                        :default => false,     :null => false
+    t.boolean  "notify_on_state",                           :default => false,     :null => false
     t.string   "facebook_access_token"
     t.boolean  "facebook_post_ideas"
     t.string   "facebook_name"
     t.float    "recent_contribution_points"
+    t.string   "reset_password_token"
+    t.integer  "sign_in_count",                             :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "confirmation_sent_at"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

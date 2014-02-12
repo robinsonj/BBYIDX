@@ -1,5 +1,7 @@
 BBYIDX::Application.routes.draw do
 
+  devise_for :users
+
   resources :ideas do
     member do
       post :assign

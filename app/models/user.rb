@@ -1,6 +1,13 @@
 require 'digest/sha1'
 
 class User < ActiveRecord::Base
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
+
+  # Setup accessible (or protected) attributes for your model
+  attr_accessible :email, :password, :password_confirmation, :remember_me
 
   acts_as_authorized_user
   acts_as_authorizable
@@ -106,42 +113,48 @@ class User < ActiveRecord::Base
     end
   end
 
+##########
+
+  # Old authentication plugin
+
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
-  def self.authenticate(email, password)
-    return nil unless user = find_by_login(email, password)
-    user.active? ? user : nil
-  end
+  # def self.authenticate(email, password)
+  #   return nil unless user = find_by_login(email, password)
+  #   user.active? ? user : nil
+  # end
 
-  # Authenticates a user's login & password without checking that they are active.
-  def self.find_by_login(email, password)
-    u = find :first, :conditions => {:email => email} # need to get the salt
-    u && u.authenticated?(password) ? u : nil
-  end
+  # # Authenticates a user's login & password without checking that they are active.
+  # def self.find_by_login(email, password)
+  #   u = find :first, :conditions => {:email => email} # need to get the salt
+  #   u && u.authenticated?(password) ? u : nil
+  # end
 
-  def self.find_top_contributors(all_time = false, opts = {})
-    find :all, opts.reverse_merge(
-      :conditions => [
-        'state = ? and (select count(*) from roles_users where roles_users.user_id = users.id) = 0', 'active'],
-      :order => all_time ? 'contribution_points desc' : 'recent_contribution_points desc')
-  end
+  # def self.find_top_contributors(all_time = false, opts = {})
+  #   find :all, opts.reverse_merge(
+  #     :conditions => [
+  #       'state = ? and (select count(*) from roles_users where roles_users.user_id = users.id) = 0', 'active'],
+  #     :order => all_time ? 'contribution_points desc' : 'recent_contribution_points desc')
+  # end
 
-  # Encrypts some data with the salt.
-  def self.encrypt(password, salt)
-    Digest::SHA1.hexdigest("--#{salt}--#{password}--")
-  end
+  # # Encrypts some data with the salt.
+  # def self.encrypt(password, salt)
+  #   Digest::SHA1.hexdigest("--#{salt}--#{password}--")
+  # end
 
-  # Encrypts the password with the user salt
-  def encrypt(password)
-    self.class.encrypt(password, salt)
-  end
+  # # Encrypts the password with the user salt
+  # def encrypt(password)
+  #   self.class.encrypt(password, salt)
+  # end
 
-  def authenticated?(password)
-    crypted_password == encrypt(password)
-  end
+  # def authenticated?(password)
+  #   crypted_password == encrypt(password)
+  # end
 
-  def remember_token?
-    remember_token_expires_at && Time.now.utc < remember_token_expires_at
-  end
+  # def remember_token?
+  #   remember_token_expires_at && Time.now.utc < remember_token_expires_at
+  # end
+
+#########
 
   # These create and unset the fields required for remembering users between browser closes
   def remember_me
