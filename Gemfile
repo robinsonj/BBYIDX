@@ -36,8 +36,10 @@ gem 'devise-encryptable'
 gem 'nested_scenarios', :path => './nested_scenarios'
 
 # Code coverage tests.
-gem 'simplecov'
-gem 'simplecov-rcov'
+group :development, :test do
+  gem 'simplecov'
+  gem 'simplecov-rcov'
+end
 
 group :test do
   gem 'pg'
