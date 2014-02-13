@@ -124,17 +124,17 @@ class User < ActiveRecord::Base
   # end
 
   # # Authenticates a user's login & password without checking that they are active.
-  # def self.find_by_login(email, password)
-  #   u = find :first, :conditions => {:email => email} # need to get the salt
-  #   u && u.authenticated?(password) ? u : nil
-  # end
+  def self.find_by_login(email, password)
+    u = find :first, :conditions => {:email => email} # need to get the salt
+    u && u.authenticated?(password) ? u : nil
+  end
 
-  # def self.find_top_contributors(all_time = false, opts = {})
-  #   find :all, opts.reverse_merge(
-  #     :conditions => [
-  #       'state = ? and (select count(*) from roles_users where roles_users.user_id = users.id) = 0', 'active'],
-  #     :order => all_time ? 'contribution_points desc' : 'recent_contribution_points desc')
-  # end
+  def self.find_top_contributors(all_time = false, opts = {})
+    find :all, opts.reverse_merge(
+      :conditions => [
+        'state = ? and (select count(*) from roles_users where roles_users.user_id = users.id) = 0', 'active'],
+      :order => all_time ? 'contribution_points desc' : 'recent_contribution_points desc')
+  end
 
   # # Encrypts some data with the salt.
   # def self.encrypt(password, salt)
