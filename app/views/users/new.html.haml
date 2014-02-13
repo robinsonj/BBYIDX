@@ -11,7 +11,7 @@
           %em free!
     .body
       .group
-        = error_messages_for :user
+        = errors_for(:user)
         - form_for :user, :url => user_path do |f|
           -if @first_user
             = hidden_field_tag :first_user, 1
@@ -41,7 +41,7 @@
               = link_to 'terms of use', home_path('terms-of-use'), :target => "_blank"
           .form-submit.inline
             = submit_tag 'Sign Up', :id => "submit-signup", :class => "input-submit"
-      
+
       -# ------- STYLE NEEDED ------
       -if TWITTER_ENABLED || FACEBOOK_ENABLED
         .group
@@ -50,9 +50,9 @@
           -if FACEBOOK_ENABLED
             .login-button= link_to 'Log in with Facebook', '#', :onclick => 'facebook_login(); return false'
       -# ------- /STYLE NEEDED ------
-      
+
     .footer
   %hr.hide
   #sidebar.aside
     = render :partial => "shared/sidebar"
-    
+
