@@ -83,6 +83,10 @@ class User < ActiveRecord::Base
 
   include AASM
 
+  def aasm_state
+    self[:aasm_state] || "uninitialized"
+  end
+
   aasm do
     state :passive
     state :pending, :enter => :registered, :inital => true
