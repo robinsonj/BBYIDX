@@ -11,7 +11,7 @@
           %em free!
     .body
       .group
-        = errors_for(:user)
+        = errors_for(@user)
         - form_for :user, :url => user_path do |f|
           -if @first_user
             = hidden_field_tag :first_user, 1
