@@ -1,7 +1,5 @@
 BBYIDX::Application.routes.draw do
 
-  devise_for :users
-
   resources :ideas do
     member do
       post :assign
@@ -32,6 +30,8 @@ BBYIDX::Application.routes.draw do
   resource :user, :map
   resources :comments, :tags, :profiles
 
+  devise_for :users
+
   match '/login'                              => 'sessions#new',                :as => :login
   match '/login/twitter'                      => 'sessions#new',                :as => :twitter_login
   match '/logout'                             => 'sessions#destroy',            :as => :logout
@@ -43,6 +43,8 @@ BBYIDX::Application.routes.draw do
   match '/user/password/forgot'               => 'users#send_password_reset',   :as => :send_password_reset
   match '/user/password/new/:activation_code' => 'users#new_password',          :as => :password_reset
   match '/user/authorize/twitter'             => 'users#authorize_twitter',     :as => :authorize_twitter
+
+  # Route for flagging things as inapprpriate.
   match '/:model/:id/inappropriate'           => 'inappropriate#flag',          :as  => :flag_inappropriate
 
   # Pretty URLS: these must come after more specific routes
