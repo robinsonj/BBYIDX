@@ -1,17 +1,58 @@
-%h2 Sign up
-= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
-  = devise_error_messages!
-  %div
-    = f.label :email
-    %br/
-    = f.email_field :email, :autofocus => true
-  %div
-    = f.label :password
-    %br/
-    = f.password_field :password
-  %div
-    = f.label :password_confirmation
-    %br/
-    = f.password_field :password_confirmation
-  %div= f.submit "Sign up"
-= render "users/shared/links"
+%div
+  .main.panel.section
+    .header
+      -if @first_user
+        %h2 Create Admin User
+        %h3 To complete the installation process, you need to create an initial admin user.
+      -else
+        %h2 Sign up for an Account
+        %h3<
+          Hey, why not? It's completely
+          %em free!
+    .body
+      .group
+        = errors_for(:user)
+        - form_for :user, :url => user_path do |f|
+          -if @first_user
+            = hidden_field_tag :first_user, 1
+          .form-group.inline
+            %label{ :for => "user_email" } Email Address
+            = f.text_field :email, :class => "input-text big"
+            %p.note You'll use this when you log in.
+          .form-group.inline
+            %label{ :for => "user_name" } Screen name
+            = f.text_field :name, :class => "input-text big"
+            %p.note== This is your public name on #{SHORT_SITE_NAME}
+          .form-group.inline
+            %label{ :for => "user_password" } Password
+            = f.password_field :password, :class => "input-text big"
+            %p.note Minimum 4 characters.
+          .form-group.inline
+            %label{ :for => "user_password_confirmation" } Confirm
+            = f.password_field :password_confirmation, :class => "input-text big"
+            %p.note Make sure you typed it right.
+          .form-group.inline
+            %label{ :for => "user_zip_code" } Zip Code
+            = f.text_field :zip_code, :class => "input-text big superthin"
+          .form-group.inline.checkbox
+            = f.check_box :terms_of_service, :class => "input-checkbox"
+            %label{ :for => "user_terms_of_service" }
+              I agree to the
+              = link_to 'terms of use', home_path('terms-of-use'), :target => "_blank"
+          .form-submit.inline
+            = submit_tag 'Sign Up', :id => "submit-signup", :class => "input-submit"
+
+      -# ------- STYLE NEEDED ------
+      -if TWITTER_ENABLED || FACEBOOK_ENABLED
+        .group
+          -if TWITTER_ENABLED
+            .login-button= link_to 'Log in with Twitter', twitter_login_path
+          -if FACEBOOK_ENABLED
+            .login-button= link_to 'Log in with Facebook', '#', :onclick => 'facebook_login(); return false'
+      -# ------- /STYLE NEEDED ------
+
+    .footer
+  %hr.hide
+  #sidebar.aside
+    = render :partial => "shared/sidebar"
+-# = render "users/shared/links"
