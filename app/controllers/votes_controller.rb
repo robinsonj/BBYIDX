@@ -1,8 +1,8 @@
 class VotesController < ApplicationController
-  
-  before_filter :login_required
+
+  before_filter :authenticate_user!
   protect_from_forgery :except => :create
-  
+
   def create
     @idea = Idea.find(params[:idea_id])
     @idea.add_vote!(current_user)
@@ -12,9 +12,9 @@ class VotesController < ApplicationController
       format.xml
     end
   end
-  
+
   def request_as_words
     "vote for ideas"
   end
-  
+
 end

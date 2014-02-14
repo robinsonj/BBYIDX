@@ -1,8 +1,7 @@
 class UsersController < ApplicationController
   include AuthenticatedSystem
 
-  before_filter :authenticate_user!
-  before_filter :login_required, :only => [:edit, :update, :authorize_twitter]
+  before_filter :authenticate_user!, :only => [:edit, :update, :authorize_twitter]
   before_filter :populate_user, :except => [:show]
 
   def new
