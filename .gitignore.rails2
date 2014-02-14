@@ -1,9 +1,0 @@
-log
-.DS_Store
-tmp/*
-test/fixtures/*/*
-*.tmproj
-db/development_structure.sql
-.rvmrc
-.bundle
-bin
