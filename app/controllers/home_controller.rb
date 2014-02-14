@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  
+
   def show
     @@verified_installation ||= false
     unless @@verified_installation
@@ -11,23 +11,24 @@ class HomeController < ApplicationController
         return
       end
       if User.count == 0
+        logger.info "No users found. Redirecting to create first user: " + new_user_path
         redirect_to new_user_path
         return
       end
       @@verified_installation = true
     end
-    
+
     @body_class = params[:page].nil? ? 'home' : params[:page]
     render :action => params[:page] || 'show'
   end
-  
+
   def nearby_ideas
     ideas = Idea.find(geo_search_ideas(params[:search], :limit => 5))
     render :partial => 'idea', :collection => ideas
   end
-  
+
   # Experimental wacky fractal tag cloud (currently unused):
-  
+
   def render_idea_cloud(opts)
     logger.warn("selecting idea cloud!")
     @cloud_layout = nil
@@ -43,7 +44,7 @@ class HomeController < ApplicationController
     render :partial => 'cloud', :locals => opts.merge(:boxes => @cloud_layout.boxes)
   end
   helper_method :render_idea_cloud
-  
+
   def cloud(ideas, opts = {})
     top_rated = opts[:search].include?('hot')
     opts.reverse_merge!(
@@ -64,7 +65,7 @@ class HomeController < ApplicationController
     end
     Layout::FractalScatter.new(ideas, opts, &idea_sizer)
   end
-  
+
   def cloud_style(boxes)
     idea = boxes.object
     " font-size: #{Math.sqrt(boxes.area / (idea.title.size + 1)) * 0.9}px;
@@ -72,9 +73,9 @@ class HomeController < ApplicationController
       text-align: center;
       /*overflow: hidden;
       text-overflow: ellipsis;*/
-      
+
       color: #{boxes.color};
-      
+
       position: absolute;
       left:   #{boxes.left}px;
       top:    #{boxes.top}px;
@@ -83,8 +84,8 @@ class HomeController < ApplicationController
     ".gsub(/[\r\n]/, '')
   end
   helper_method :cloud_style
-  
+
   include ApplicationHelper
-  
+
 end
 
