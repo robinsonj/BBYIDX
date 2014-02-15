@@ -30,19 +30,25 @@ BBYIDX::Application.routes.draw do
   resource :user, :map
   resources :comments, :tags, :profiles
 
-  devise_for :users
+  devise_for :users do
+    match '/signup'                             => 'users/registrations#new',               :as => :signup
+    match '/login'                              => 'users/sessions#new',                    :as => :login
+    match '/login/twitter'                      => 'users/sessions#new',                    :as => :login_twitter
+    match '/logout'                             => 'users/sessions#destroy',                :as => :logout
+    match '/user/password/forgot'               => 'users/passwords#forgot_password',       :as => :forgot_password
+    match '/user/password/forgot'               => 'users/passwords#send_password_reset',   :as => :send_password_reset
+    match '/user/password/new/:activation_code' => 'users/passwords#edit',          :as => :password_reset
+  end
 
-  match '/login'                              => 'sessions#new',                :as => :login
-  match '/login/twitter'                      => 'sessions#new',                :as => :twitter_login
-  match '/logout'                             => 'sessions#destroy',            :as => :logout
-  match '/signup'                             => 'users#new',                   :as => :signup
-  match '/ideas/search/*search'               => 'ideas#index',                 :as => :idea_search
+  # match '/login'                              => 'sessions#new',                :as => :login
+  # match '/login/twitter'                      => 'sessions#new',                :as => :twitter_login
+  # match '/logout'                             => 'sessions#destroy',            :as => :logout
+  #match '/signup'                             => 'users#new',                   :as => :signup
   match '/user/send_activation'               => 'users#send_activation',       :as => :send_activation
   match '/user/activate/:activation_code'     => 'users#activate',              :as => :activate
-  match '/user/password/forgot'               => 'users#forgot_password',       :as => :forgot_password
-  match '/user/password/forgot'               => 'users#send_password_reset',   :as => :send_password_reset
-  match '/user/password/new/:activation_code' => 'users#new_password',          :as => :password_reset
   match '/user/authorize/twitter'             => 'users#authorize_twitter',     :as => :authorize_twitter
+
+  match '/ideas/search/*search'               => 'ideas#index',                 :as => :idea_search
 
   # Route for flagging things as inapprpriate.
   match '/:model/:id/inappropriate'           => 'inappropriate#flag',          :as  => :flag_inappropriate
