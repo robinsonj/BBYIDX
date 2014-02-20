@@ -30,7 +30,7 @@ BBYIDX::Application.routes.draw do
   resource :user, :map
   resources :comments, :tags, :profiles
 
-  devise_scope :users do
+  devise_scope :user do
     match '/signup'                             => 'users/registrations#new',               :as => :signup
     match '/login'                              => 'users/sessions#new',                    :as => :login
     match '/login/twitter'                      => 'users/sessions#new',                    :as => :login_twitter
