@@ -15,7 +15,7 @@
     %ul.nav.user
       - if logged_in?
         %li.first= link_to "#{h current_user.name}" , profile_url(current_user)
-        %li= link_to 'Settings', edit_user_path
+        %li= link_to 'Settings', edit_user_registration_path
         %li= link_to "About", home_path('about')
         -if current_user.admin?
           %li= link_to 'Admin', admin_root_path
@@ -28,5 +28,5 @@
       %li.last.search
         - form_tag ideas_path, :method => :get, :id => 'idea_search_box' do
           %label{ :for => "search_text" }
-            Search: 
+            Search:
           = text_field_tag 'search_text', params[:search_text]
