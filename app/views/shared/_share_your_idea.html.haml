@@ -3,8 +3,8 @@
 #share.section
   .body
     #submit-idea
-      = error_messages_for :idea
-      - form_for :idea, :url => ideas_path, :has_example_text => true, :html => { :class => 'main' } do |f|
+      -# = errors_for(@idea)
+      = form_for :idea, :url => ideas_path, :has_example_text => true, :html => { :class => 'main' } do |f|
         #idea-title-group.form-group.inline
           %label{ :for => "idea-title" }
             %strong Idea

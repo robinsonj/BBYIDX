@@ -20,7 +20,12 @@ class IdeasController < ApplicationController
   make_resourceful do
     actions :new, :create, :show, :update
 
+    before :new do
+      @idea = Idea.new
+    end
+
     before :create do
+      @idea = Idea.new
       @idea.inventor = current_user
       @idea.ip = request.remote_ip
       @idea.user_agent = request.user_agent
