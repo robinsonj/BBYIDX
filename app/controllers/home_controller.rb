@@ -11,8 +11,8 @@ class HomeController < ApplicationController
         return
       end
       if User.count == 0
-        logger.info "No users found. Redirecting to create first user: " + new_user_path
-        redirect_to new_user_path
+        logger.info "No users found. Redirecting to create first user: " + new_user_registration_path
+        redirect_to new_user_registration_path
         return
       end
       @@verified_installation = true
