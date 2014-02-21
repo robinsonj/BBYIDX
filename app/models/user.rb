@@ -84,12 +84,12 @@ class User < ActiveRecord::Base
   include AASM
 
   def aasm_state
-    self[:aasm_state] || "uninitialized"
+    self[:state] || "uninitialized"
   end
 
   aasm do
-    state :passive
-    state :pending, :enter => :registered, :inital => true
+    state :passive, :inital => true
+    state :pending, :enter => :registered
     state :active,  :enter => :do_activate
     state :suspended
     state :deleted, :enter => :do_delete
