@@ -1,4 +1,4 @@
-class users::passwordsController < Devise::passwordsController
+class Users::PasswordsController < Devise::PasswordsController
   # def new
   #   super
   # end
