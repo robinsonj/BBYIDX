@@ -7,11 +7,11 @@
       %meta{ :content => 'text/html; charset=UTF-8', "http-equiv" => "Content-Type" }/
       %meta{ :name => 'keywords', :content => "#{COMPANY_NAME}, #{SHORT_SITE_NAME}, #{LONG_SITE_NAME}, Idea Exchange, share, vote, rate"}
       %meta{ :name => 'description', :content => "#{LONG_SITE_NAME} is a forum for #{COMPANY_NAME} customers to share, rate, and discuss ideas about #{COMPANY_NAME}."}
-      
+
       -if GOOGLE_WEBMASTER_KEY
         %meta{ :name => "verify-v1", :content => GOOGLE_WEBMASTER_KEY }
-      
-      = stylesheet_link_tag 'master'
+
+      = stylesheet_link_tag 'application'
       /[if lt IE 8]
         = stylesheet_link_tag 'ie'
       /[if lt IE 7]
@@ -29,7 +29,7 @@
     = javascript_include_tag 'map_ideas'
     -if @map
       %script(src='http://maps.google.com/maps/api/js?sensor=false' type='text/javascript')
-  
+
   %body{ :class => @body_class }
     #wrap
       = render :partial => "shared/header"
@@ -39,7 +39,7 @@
       #content
         = render :partial => "shared/flash_messages"
         = yield
-      
+
       -cache 'footer' do
         %hr.hide
         = render :partial => "shared/footer"
