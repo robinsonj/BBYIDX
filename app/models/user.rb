@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   acts_as_authorizable
 
   # Virtual attribute for the unencrypted password
-  attr_accessor :password
+  # attr_accessor :password
 
   has_many :ideas, :foreign_key => 'inventor_id' do
     def recent_visible(opts = {})
@@ -63,7 +63,7 @@ class User < ActiveRecord::Base
   validates_presence_of     :email
   validates_presence_of     :zip_code
   validates_presence_of     :password,                   :if => :password_required?
-  validates_presence_of     :password_confirmation,      :if => :password_confirmation_required?
+  # validates_presence_of     :password_confirmation,      :if => :password_confirmation_required?
   validates_length_of       :password, :within => 4..40, :if => :password_required?
   validates_confirmation_of :password,                   :if => :password_required?
   validates_length_of       :name,     :within => 4..100
@@ -259,38 +259,38 @@ class User < ActiveRecord::Base
   end
 
   protected
-    # before filter
-    def encrypt_password
-      return if password.blank?
-      self.salt = Digest::SHA1.hexdigest("--#{Time.now.to_s}--#{email}--") if new_record?
-      self.crypted_password = encrypt(password)
-    end
+    # # before filter
+    # def encrypt_password
+    #   return if password.blank?
+    #   self.salt = Digest::SHA1.hexdigest("--#{Time.now.to_s}--#{email}--") if new_record?
+    #   self.crypted_password = encrypt(password)
+    # end
 
-    def password_required?
-      return true unless password_confirmation.blank?
-      return false if linked_to_twitter? || linked_to_facebook?
-      crypted_password.blank? || !password.blank? || !password_confirmation.blank?
-    end
+    # def password_required?
+    #   return true unless password_confirmation.blank?
+    #   return false if linked_to_twitter? || linked_to_facebook?
+    #   crypted_password.blank? || !password.blank? || !password_confirmation.blank?
+    # end
 
-    def password_confirmation_required?
-      !password.blank?
-    end
+    # def password_confirmation_required?
+    #   !password.blank?
+    # end
 
-    def registered
-      self.deleted_at = nil
-      reset_activation_code unless linked_to_twitter? || linked_to_facebook?
-      save!
-    end
+    # def registered
+    #   self.deleted_at = nil
+    #   reset_activation_code unless linked_to_twitter? || linked_to_facebook?
+    #   save!
+    # end
 
-    def do_delete
-      self.deleted_at = Time.now.utc
-    end
+    # def do_delete
+    #   self.deleted_at = Time.now.utc
+    # end
 
-    def do_activate
-      @recently_activated = true
-      self.activated_at = Time.now.utc
-      self.deleted_at = self.activation_code = nil
-    end
+    # def do_activate
+    #   @recently_activated = true
+    #   self.activated_at = Time.now.utc
+    #   self.deleted_at = self.activation_code = nil
+    # end
 
     def assign_postal_code
       self.postal_code = PostalCode.find_by_text(zip_code)
