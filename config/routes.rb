@@ -20,12 +20,12 @@ BBYIDX::Application.routes.draw do
     end
   end
 
-  resource :session do
-    member do
-      get :create_twitter
-      get :create_facebook
-    end
-  end
+  # resource :session do
+  #   member do
+  #     get :create_twitter
+  #     get :create_facebook
+  #   end
+  # end
 
   # resource :user, :map
   resource :map
@@ -45,6 +45,8 @@ BBYIDX::Application.routes.draw do
     match '/login/twitter'                      => 'users/sessions#new',                    :as => :login_twitter
     match '/logout'                             => 'users/sessions#destroy',                :as => :logout
     match '/user/authorize/twitter'             => 'users/sessions#authorize_twitter',      :as => :authorize_twitter
+    match '/session/create_twitter'             => 'users/sessions#create_twitter',         :as => :create_twitter_session
+    match '/session/create_facebook'            => 'users/sessions#create_facebook',        :as => :create_facebook_session
     match '/user/password/forgot'               => 'users/passwords#forgot_password',       :as => :forgot_password
     match '/user/password/forgot'               => 'users/passwords#send_password_reset',   :as => :send_password_reset
     match '/user/password/new/:activation_code' => 'users/passwords#edit',                  :as => :password_reset
