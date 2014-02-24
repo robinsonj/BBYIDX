@@ -70,7 +70,7 @@
             -#%li= link_to image_tag("icn/16-sq-map.png", :alt => "Map these ideas"), "#"
             -#%li= link_to image_tag("icn/16-sq-rss.png", :alt => "Subscribe to these ideas"), "/ideas.rss"
         .body.ideas
-          = render :partial => 'idea', :collection => search_ideas(:search => 'hot', :page_size => 5)
+          = render :partial => 'idea', :collection => search_ideas(:search => 'hot'.lines.to_a, :page_size => 5)
         .footer
           .pagination
             = link_to 'More', idea_search_path(:search => 'top-rated'), :class => 'next_page'
@@ -83,7 +83,7 @@
             -#%li= link_to image_tag("icn/16-sq-map.png", :alt => "Map these ideas"), "#"
             %li= link_to image_tag("icn/16-sq-rss.png", :alt => "Subscribe to these ideas"), "/ideas.rss"
         .body.ideas
-          = render :partial => 'idea', :collection => search_ideas(:search => 'recent', :page_size => 5)
+          = render :partial => 'idea', :collection => search_ideas(:search => 'recent'.lines.to_a, :page_size => 5)
         .footer
           .pagination
             = link_to 'More', idea_search_path(:search => 'recent'), :class => 'next_page'
@@ -100,4 +100,4 @@
         .footer
           .pagination
             = link_to 'More', map_path, :class => "next_page"
-              
+
