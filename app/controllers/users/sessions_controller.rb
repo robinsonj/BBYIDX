@@ -6,16 +6,31 @@ class Users::SessionsController < Devise::SessionsController
 
   include TwitterHelper
 
+  def new
+    super
+  end
+
   # def new
-  #   super
+  #   @body_class = 'login'
   # end
 
-  def new
-    @body_class = 'login'
+  def create
+    super
   end
 
   # def create
-  #   super
+  #   user = User.find_by_login(params[:email], params[:password])
+  #   if user
+  #     self.current_user = user
+  #     if params[:remember_me] == "1"
+  #       current_user.remember_me unless current_user.remember_token?
+  #       cookies[:auth_token] = { :value => self.current_user.remember_token , :expires => self.current_user.remember_token_expires_at }
+  #     end
+  #     response_for_successful_login
+  #   else
+  #     flash.now[:error] = render_to_string :partial => 'login_failed'
+  #     render :action => 'new'
+  #   end
   # end
 
   def new_twitter
@@ -74,21 +89,6 @@ class Users::SessionsController < Devise::SessionsController
       end
     else
       redirect_to login_path
-    end
-  end
-
-  def create
-    user = User.find_by_login(params[:email], params[:password])
-    if user
-      self.current_user = user
-      if params[:remember_me] == "1"
-        current_user.remember_me unless current_user.remember_token?
-        cookies[:auth_token] = { :value => self.current_user.remember_token , :expires => self.current_user.remember_token_expires_at }
-      end
-      response_for_successful_login
-    else
-      flash.now[:error] = render_to_string :partial => 'login_failed'
-      render :action => 'new'
     end
   end
 
