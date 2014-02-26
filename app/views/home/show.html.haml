@@ -67,8 +67,8 @@
           %h3.icon.popular
             What's Hot
           %ul.actions
-            -#%li= link_to image_tag("icn/16-sq-map.png", :alt => "Map these ideas"), "#"
-            -#%li= link_to image_tag("icn/16-sq-rss.png", :alt => "Subscribe to these ideas"), "/ideas.rss"
+            -#%li= link_to image_tag("16-sq-map.png", :alt => "Map these ideas"), "#"
+            -#%li= link_to image_tag("16-sq-rss.png", :alt => "Subscribe to these ideas"), "/ideas.rss"
         .body.ideas
           = render :partial => 'idea', :collection => search_ideas(:search => 'hot'.lines.to_a, :page_size => 5)
         .footer
@@ -80,8 +80,8 @@
           %h3.icon.recent
             Recent Ideas
           %ul.actions
-            -#%li= link_to image_tag("icn/16-sq-map.png", :alt => "Map these ideas"), "#"
-            %li= link_to image_tag("icn/16-sq-rss.png", :alt => "Subscribe to these ideas"), "/ideas.rss"
+            -#%li= link_to image_tag("16-sq-map.png", :alt => "Map these ideas"), "#"
+            %li= link_to image_tag("16-sq-rss.png", :alt => "Subscribe to these ideas"), "/ideas.rss"
         .body.ideas
           = render :partial => 'idea', :collection => search_ideas(:search => 'recent'.lines.to_a, :page_size => 5)
         .footer
@@ -93,8 +93,8 @@
           %h3.icon.nearby
             Nearby Ideas
           %ul.actions
-            -#%li= link_to image_tag("icn/16-sq-map.png", :alt => "Map these ideas"), "#"
-            -#%li= link_to image_tag("icn/16-sq-rss.png", :alt => "Subscribe to these ideas"), "#"
+            -#%li= link_to image_tag("16-sq-map.png", :alt => "Map these ideas"), "#"
+            -#%li= link_to image_tag("16-sq-rss.png", :alt => "Subscribe to these ideas"), "#"
         #nearby-idea-results.body.ideas
           = render :partial => 'nearby_ideas'
         .footer
