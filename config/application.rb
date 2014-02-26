@@ -74,6 +74,8 @@ module BBYIDX
 
     # disable forgery proction so that facebook works (we might be able to disble this only for the facebook controller)
     # config.action_controller.allow_forgery_protection = false
+
+    config.assets.enabled = true
   end
 
   unless SESSION_SECRET
