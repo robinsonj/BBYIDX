@@ -13,7 +13,8 @@
           %li.first= link_to 'Comments', comments_path, :class => 'comments'
           %li.last= link_to 'Tags', tags_path, :class => 'tags'
     %ul.nav.user
-      - if logged_in?
+      - logger.debug "User signed in? #{user_signed_in?}"
+      - if user_signed_in?
         %li.first= link_to "#{h current_user.name}" , profile_url(current_user)
         %li= link_to 'Settings', edit_user_registration_path
         %li= link_to "About", home_path('about')
