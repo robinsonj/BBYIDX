@@ -3,6 +3,8 @@ source 'https://rubygems.org'
 gem 'rails', '~> 3.2.16'
 gem 'rake'
 
+gem 'thin'
+
 gem 'json'
 gem 'will_paginate'
 gem 'mash'
