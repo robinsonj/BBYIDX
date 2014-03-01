@@ -27,8 +27,8 @@ BBYIDX::Application.routes.draw do
   #   end
   # end
 
-  # resource :user, :map
   resource :map
+  # resource :user
   resources :comments, :tags, :profiles
 
   devise_for :users, :controllers => {
